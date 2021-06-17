@@ -1,0 +1,12 @@
+// dark mode specific overrides & fixes.
+
+// nav drawer
+.theme--dark.v-navigation-drawer {
+  background-color: #121212 !important;
+}
+
+// content edit
+// dark mode text color fix
+.theme--dark>div.v-card__text>div.nuxt-content-container>.nuxt-content-editor {
+  color: #fff !important;
+}

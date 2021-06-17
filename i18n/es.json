@@ -1,0 +1,19 @@
+{
+  "title": "static",
+  "subtitle": "CMS basado en Git",
+  "home": {
+    "title": "CMS basado en Git",
+    "desc": "Static es un CMS basado en Git para iniciar sitios de aterrizaje para proyectos de código abierto. Al utilizar Vue.js, Nuxt.js y Vuetify, todo el trabajo pesado está hecho por usted, no se requieren habilidades de codificación. Solo concéntrese en mostrar su proyecto y todo lo que tiene para ofrecer.",
+    "github": "Github",
+    "getStarted": "Empezar"
+  },
+  "toc": "Contenido",
+  "slug": {
+    "fallback": "No hay {0} versión disponible. Volviendo a {1}."
+  },
+  "search": {
+    "title": "Buscar",
+    "noResults": "No hay resultados de búsqueda..."
+  },
+  "helpTranslate": "Ayuda a traducir"
+}

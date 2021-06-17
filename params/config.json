@@ -1,0 +1,63 @@
+{
+  "favicon": "favicon.png",
+  "logo": {
+    "dark": "octano-dark.svg",
+    "light": "octano-light.svg"
+  },
+  "url": "https://octanolabs.github.io/static",
+  "github": "https://github.com/octanolabs/static",
+  "theme": {
+    "dark": true,
+    "themes": {
+      "dark": {
+        "primary": "#6fceb7",
+        "secondary": "#e76754",
+        "accent": "#ff00ff",
+        "error": "#FF5252",
+        "info": "#2196F3",
+        "success": "#4CAF50",
+        "warning": "#FFC107",
+        "staticborders": "#2E2E2E",
+        "zebrastripes": "#1E1E1E"
+      },
+      "light": {
+        "primary": "#00ccff",
+        "secondary": "#ff00cb",
+        "accent": "#f30",
+        "error": "#FF5252",
+        "info": "#2196F3",
+        "success": "#4CAF50",
+        "warning": "#FFC107",
+        "staticborders": "#E1E1E1",
+        "zebrastripes": "#F1F1F1"
+      }
+    },
+    "options": {
+      "customProperties": true
+    }
+  },
+  "i18n": {
+    "default": "en",
+    "locales": [
+      {
+        "code": "en",
+        "name": "English"
+      },
+      {
+        "code": "es",
+        "name": "Español"
+      },
+      {
+        "code": "ru",
+        "name": "Pусский"
+      },
+      {
+        "code": "zh",
+        "name": "中文"
+      }
+    ]
+  },
+  "router": {
+    "base": "/static/"
+  }
+}

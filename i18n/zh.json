@@ -1,0 +1,19 @@
+{
+  "title": "static",
+  "subtitle": "基于Git的CMS",
+  "home": {
+    "title": "基于Git的CMS",
+    "desc": "静态是基于Git的CMS，用于引导开源项目的登录站点。 通过利用Vue.js，Nuxt.js和Vuetify，所有繁重的工作都可以为您完成-不需要任何编码技能。 只需专注于炫耀您的项目以及它所提供的一切。",
+    "github": "Github",
+    "getStarted": "开始使用"
+  },
+  "toc": "内容",
+  "slug": {
+    "fallback": "没有可用的{0}版本。 退回到{1}。"
+  },
+  "search": {
+    "title": "搜索",
+    "noResults": "没有搜索结果..."
+  },
+  "helpTranslate": "帮助翻译"
+}
