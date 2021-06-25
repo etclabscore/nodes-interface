@@ -1,42 +1,114 @@
 <template>
-  <v-row justify="center" align="center" class="pa-0">
-    <v-col cols="12" class="text-center pa-0">
-      <div class="text-center my-6">
-        <v-avatar tile class="pa-2 bordered-avatar" size="320" max-width="100%">
-          <v-img :src="params.logo[theme]" height="250" contain class="pa-2" />
-        </v-avatar>
-      </div>
-      <h1 class="v-heading text-h3 text-sm-h3 mb-4">{{ $t('home.title') }}</h1>
-      <p class="mx-auto" style="width: 420px; max-width: 85%">
-        {{ $t('home.desc') }}
-      </p>
-      <v-row no-gutters align="center" class="text-center pt-4">
-        <span class="mx-auto">
-          <v-btn
-            color="primary"
-            nuxt
-            :to="'/' + locale + '/introduction'"
-            x-large
-            min-width="200px"
-            class="mb-2"
-          >
-            <v-icon class="mr-1">mdi-gauge</v-icon>
-            {{ $t('home.getStarted') }}
-          </v-btn>
-          <v-btn
-            color="#212121"
-            style="color: #fff"
-            :href="params.github"
-            target="_blank"
-            x-large
-            min-width="200px"
-            class="mb-2"
-          >
-            <v-icon class="mr-1">mdi-github</v-icon>
-            {{ $t('home.github') }}
-          </v-btn>
-        </span>
-      </v-row>
+  <v-row justify="center" align="center" class="pa-0" no-gutters>
+    <v-col cols="12" md="8" sm="12" class="text-center">
+      <v-card tile>
+        <div class="d-flex flex-no-wrap justify-space-between">
+          <div style="width: 100%">
+            <v-card-title>
+              <v-icon class="mr-1">mdi-console</v-icon>
+              Clients
+            </v-card-title>
+            <v-simple-table style="width: 100%">
+              <template #default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Total nodes</th>
+                    <th class="text-right">{{ totalNodes }} (100%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(count, name) of nodes.clients.table" :key="name">
+                    <td class="text-left">{{ name }}</td>
+                    <td class="text-right">
+                      {{ count }} ({{ percent(count, totalNodes) }}%)
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <apexchart
+            v-if="!isMobile"
+            width="320"
+            type="pie"
+            :options="getChartOptions('clients')"
+            :series="getChartSeries('clients')"
+            class="mt-3"
+          ></apexchart>
+        </div>
+      </v-card>
+      <v-card tile class="mt-2">
+        <div class="d-flex flex-no-wrap justify-space-between">
+          <div style="width: 100%">
+            <v-card-title>
+              <v-icon class="mr-1">mdi-directions-fork</v-icon>
+              ForkIds
+            </v-card-title>
+            <v-simple-table style="width: 100%">
+              <template #default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Total nodes</th>
+                    <th class="text-right">{{ totalNodes }} (100%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(count, name) of forkIds.table" :key="name">
+                    <td class="text-left">{{ name }}</td>
+                    <td class="text-right">
+                      {{ count }} ({{ percent(count, totalNodes) }}%)
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <apexchart
+            v-if="!isMobile"
+            width="320"
+            type="pie"
+            :options="getChartOptions('forkIds')"
+            :series="getChartSeries('forkIds')"
+            class="mt-3"
+          ></apexchart>
+        </div>
+      </v-card>
+      <v-card tile class="mt-2">
+        <div class="d-flex flex-no-wrap justify-space-between">
+          <div style="width: 100%">
+            <v-card-title>
+              <v-icon class="mr-1">mdi-handshake</v-icon>
+              Protocol Versions
+            </v-card-title>
+            <v-simple-table style="width: 100%">
+              <template #default>
+                <thead>
+                  <tr>
+                    <th class="text-left">Total nodes</th>
+                    <th class="text-right">{{ totalNodes }} (100%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(count, name) of protocols.table" :key="name">
+                    <td class="text-left">{{ name }}</td>
+                    <td class="text-right">
+                      {{ count }} ({{ percent(count, totalNodes) }}%)
+                    </td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </div>
+          <apexchart
+            v-if="!isMobile"
+            width="320"
+            type="pie"
+            :options="getChartOptions('protocols')"
+            :series="getChartSeries('protocols')"
+            class="mt-3"
+          ></apexchart>
+        </div>
+      </v-card>
     </v-col>
   </v-row>
 </template>
@@ -44,6 +116,100 @@
 <script>
 export default {
   name: 'Home',
+  data() {
+    return {
+      tab: null,
+      charts: {
+        clients: {
+          chart: {
+            id: 'client-chart',
+            width: '100%',
+            type: 'pie',
+          },
+          theme: {
+            monochrome: {
+              enabled: true,
+            },
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -5,
+              },
+            },
+          },
+          dataLabels: {
+            formatter(val, opts) {
+              const name = opts.w.globals.labels[opts.seriesIndex]
+              return [name, val.toFixed(1) + '%']
+            },
+          },
+          legend: {
+            show: false,
+          },
+        },
+        forkIds: {
+          chart: {
+            id: 'forkId-chart',
+            width: '100%',
+            type: 'pie',
+          },
+          theme: {
+            monochrome: {
+              enabled: true,
+            },
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -5,
+              },
+            },
+          },
+          dataLabels: {
+            formatter(val, opts) {
+              const name = opts.w.globals.labels[opts.seriesIndex]
+              return [name, val.toFixed(1) + '%']
+            },
+          },
+          legend: {
+            show: false,
+          },
+        },
+        protocols: {
+          chart: {
+            id: 'protocol-chart',
+            width: '100%',
+            type: 'pie',
+          },
+          theme: {
+            monochrome: {
+              enabled: true,
+            },
+          },
+          plotOptions: {
+            pie: {
+              dataLabels: {
+                offset: -5,
+              },
+            },
+          },
+          dataLabels: {
+            formatter(val, opts) {
+              const name = opts.w.globals.labels[opts.seriesIndex]
+              return [name, val.toFixed(1) + '%']
+            },
+          },
+          legend: {
+            show: false,
+          },
+        },
+      },
+    }
+  },
+  async fetch() {
+    await this.$store.dispatch('nodes/set_nodes')
+  },
   computed: {
     params() {
       return this.$store.state.params
@@ -56,6 +222,35 @@ export default {
     },
     locale() {
       return this.$i18n.locale
+    },
+    totalNodes() {
+      return this.$store.state.nodes.raw.length
+    },
+    nodes() {
+      return this.$store.state.nodes
+    },
+    clients() {
+      return this.$store.state.nodes.clients
+    },
+    forkIds() {
+      return this.$store.state.nodes.forkIds
+    },
+    protocols() {
+      return this.$store.state.nodes.protocols
+    },
+  },
+  methods: {
+    percent(count, total) {
+      return ((count / total) * 100).toFixed(1)
+    },
+    getChartOptions(chart) {
+      return {
+        ...this.charts[chart],
+        labels: this.$store.state.nodes[chart].chart.labels,
+      }
+    },
+    getChartSeries(chart) {
+      return this.$store.state.nodes[chart].chart.series
     },
   },
 }

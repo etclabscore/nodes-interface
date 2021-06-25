@@ -4,8 +4,8 @@
     "dark": "octano-dark.svg",
     "light": "octano-light.svg"
   },
-  "url": "https://octanolabs.github.io/static",
-  "github": "https://github.com/octanolabs/static",
+  "url": "https://etcnodes.org",
+  "github": "https://github.com/etclabscore/nodes-interface",
   "theme": {
     "dark": true,
     "themes": {
@@ -58,6 +58,6 @@
     ]
   },
   "router": {
-    "base": "/static/"
+    "base": "/"
   }
 }

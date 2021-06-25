@@ -1,5 +1,5 @@
 {
-  "name": "octano.dev",
+  "name": "nodes-interface",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,11 +15,13 @@
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/axios": "^5.13.1",
+    "apexcharts": "^3.27.1",
     "consola": "^2.15.3",
     "core-js": "^3.11.2",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.1",
-    "prism-themes": "^1.6.0"
+    "prism-themes": "^1.6.0",
+    "vue-apexcharts": "^1.6.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.0",

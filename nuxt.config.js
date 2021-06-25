@@ -40,7 +40,7 @@ export default {
   css: ['~/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/i18n.js' }],
+  plugins: [{ src: '~/plugins/i18n.js' }, { src: '~plugins/apexcharts.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
