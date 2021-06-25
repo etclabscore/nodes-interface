@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{324:function(e,t,n){"use strict";n.r(t);var l={name:"Example"},r=n(37),component=Object(r.a)(l,(function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("v-card",{attrs:{flat:""}},[n("v-card-title",[e._v("Example Component")])],1)}),[],!1,null,null,null);t.default=component.exports}}]);
