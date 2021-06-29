@@ -1,19 +1,12 @@
 {
-  "title": "Network Info",
+  "title": "ETC Node Explorer",
   "subtitle": "ETC Mainnet",
   "home": {
-    "title": "ETC Network Explorer",
-    "desc": "",
-    "github": "Github",
-    "getStarted": "Get Started"
-  },
-  "toc": "Page contents",
-  "slug": {
-    "fallback": "No {0} version available. Falling back to {1}."
-  },
-  "search": {
-    "title": "Search",
-    "noResults": "No search results..."
+    "title": "Ethereum Classic Node Explorer",
+    "clients": "Clients",
+    "totalNodes": "Total Nodes",
+    "forkIds": "Fork IDs",
+    "protocolVersions": "Protocol Versions"
   },
   "helpTranslate": "Help Translate"
 }

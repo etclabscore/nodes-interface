@@ -1,18 +1,19 @@
 <template>
   <v-row justify="center" align="center" class="pa-0" no-gutters>
-    <v-col cols="12" md="8" sm="12" class="text-center">
-      <v-card tile>
+    <v-col cols="12" md="8" sm="12" class="text-center py-12">
+      <h2>{{ $t('home.title') }}</h2>
+      <v-card tile class="mt-4">
         <div class="d-flex flex-no-wrap justify-space-between">
           <div style="width: 100%">
             <v-card-title>
               <v-icon class="mr-1">mdi-console</v-icon>
-              Clients
+              {{ $t('home.clients') }}
             </v-card-title>
             <v-simple-table style="width: 100%">
               <template #default>
                 <thead>
                   <tr>
-                    <th class="text-left">Total nodes</th>
+                    <th class="text-left">{{ $t('home.totalNodes') }}</th>
                     <th class="text-right">{{ totalNodes }} (100%)</th>
                   </tr>
                 </thead>
@@ -42,13 +43,13 @@
           <div style="width: 100%">
             <v-card-title>
               <v-icon class="mr-1">mdi-directions-fork</v-icon>
-              ForkIds
+              {{ $t('home.forkIds') }}
             </v-card-title>
             <v-simple-table style="width: 100%">
               <template #default>
                 <thead>
                   <tr>
-                    <th class="text-left">Total nodes</th>
+                    <th class="text-left">{{ $t('home.totalNodes') }}</th>
                     <th class="text-right">{{ totalNodes }} (100%)</th>
                   </tr>
                 </thead>
@@ -78,13 +79,13 @@
           <div style="width: 100%">
             <v-card-title>
               <v-icon class="mr-1">mdi-handshake</v-icon>
-              Protocol Versions
+              {{ $t('home.protocolVersions') }}
             </v-card-title>
             <v-simple-table style="width: 100%">
               <template #default>
                 <thead>
                   <tr>
-                    <th class="text-left">Total nodes</th>
+                    <th class="text-left">{{ $t('home.totalNodes') }}</th>
                     <th class="text-right">{{ totalNodes }} (100%)</th>
                   </tr>
                 </thead>
