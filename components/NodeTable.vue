@@ -39,14 +39,7 @@
                   three-line
                 >
                   <template #subtitle>
-                    <nuxt-link
-                      :to="{
-                        name: 'node',
-                        params: { id: item.id },
-                      }"
-                    >
-                      {{ item.id }}
-                    </nuxt-link>
+                    {{ item.id }}
                   </template>
                 </extended-list-item>
                 <extended-list-item
