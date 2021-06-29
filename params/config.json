@@ -10,9 +10,9 @@
     "dark": true,
     "themes": {
       "dark": {
-        "primary": "#6fceb7",
-        "secondary": "#e76754",
-        "accent": "#ff00ff",
+        "primary": "#00ccff",
+        "secondary": "#ff00cb",
+        "accent": "#f30",
         "error": "#FF5252",
         "info": "#2196F3",
         "success": "#4CAF50",
