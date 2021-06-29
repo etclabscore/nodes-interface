@@ -8,5 +8,47 @@
     "forkIds": "Fork IDs",
     "protocolVersions": "Protocol Versions"
   },
+  "nodes": {
+    "nodes": "Nodes",
+    "search": "Search",
+    "overview": "Overview",
+    "raw": "Raw",
+    "version": "Version",
+    "nextFork": "Next Fork",
+    "nodeId": {
+      "title": "Node ID",
+      "tooltip": "Unique identifier of this node"
+    },
+    "ipAddress": {
+      "title": "IP Address",
+      "tooltip": "The IP address of this node"
+    },
+    "client": {
+      "title": "Client",
+      "tooltip": "The client software this node is running"
+    },
+    "protocols": {
+      "title": "Protocols",
+      "tooltip": "Protocol versions supported by this node"
+    },
+    "forkId": {
+      "title": "Fork ID",
+      "tooltip": "The current forkId reported by this node",
+      "action1": "Next fork block"
+    },
+    "head": {
+      "title": "Head",
+      "tooltip": "This nodes head blockhash and total difficulty",
+      "action1": "Total Difficulty"
+    },
+    "discovery": {
+      "title": "Discovery",
+      "tooltip": "This nodes discovery info",
+      "action1": "Last Response",
+      "action2": "Last Check",
+      "subtitle1": "First Response",
+      "score": "score"
+    }
+  },
   "helpTranslate": "Help Translate"
 }

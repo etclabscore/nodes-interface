@@ -1,16 +1,16 @@
 <template>
-  <v-row justify="center" align="center" class="pa-0" no-gutters>
+  <v-row justify="center" align="center" class="pa-0 pb-12" no-gutters>
     <v-col cols="12">
       <v-card tile>
         <v-card-title>
           <v-icon class="mr-2">mdi-server-network</v-icon>
-          Nodes
+          {{ $t('nodes.nodes') }}
           <v-spacer />
           <v-text-field
             v-model="search"
             class="pt-0"
             append-icon="mdi-magnify"
-            label="Search"
+            :label="$t('nodes.search')"
             single-line
             hide-details
           ></v-text-field>
@@ -30,15 +30,15 @@
           <template #expanded-item="{ headers, item }">
             <td :colspan="headers.length">
               <v-tabs v-model="tab" grow>
-                <v-tab>Overview</v-tab>
-                <v-tab>Raw</v-tab>
+                <v-tab>{{ $t('nodes.overview') }}</v-tab>
+                <v-tab>{{ $t('nodes.raw') }}</v-tab>
               </v-tabs>
               <v-tabs-items v-model="tab">
                 <v-tab-item :key="overview">
                   <v-list dense>
                     <extended-list-item
-                      title="Node ID"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.nodeId.title')"
+                      :tooltip="$t('nodes.nodeId.tooltip')"
                       three-line
                     >
                       <template #subtitle>
@@ -53,69 +53,84 @@
                       </template>
                     </extended-list-item>
                     <extended-list-item
-                      title="IP Address"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.ipAddress.title')"
+                      :tooltip="$t('nodes.ipAddress.tooltip')"
                     >
                       <template #subtitle>
                         {{ item.ip }}
                       </template>
                     </extended-list-item>
                     <extended-list-item
-                      title="Client"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.client.title')"
+                      :tooltip="$t('nodes.client.tooltip')"
                     >
                       <template #subtitle>
                         {{ item.fullname }}
                       </template>
                     </extended-list-item>
                     <extended-list-item
-                      title="Protocols"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.protocols.title')"
+                      :tooltip="$t('nodes.protocols.tooltip')"
                     >
                       <template #subtitle>
                         {{ item.caps.join(', ') }}
                       </template>
+                      <template #action>
+                        <v-chip label>
+                          {{ item.protocolVersion }}
+                        </v-chip>
+                      </template>
                     </extended-list-item>
                     <extended-list-item
-                      title="Fork ID"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.forkId.title')"
+                      :tooltip="$t('nodes.forkId.tooltip')"
                     >
                       <template #subtitle>
                         {{ item.forkID.tag }} ({{ item.forkID.current }})
                       </template>
-                      <template #action> Next fork block </template>
+                      <template #action>
+                        {{ $t('nodes.forkId.action1') }}</template
+                      >
                       <template #action2>
                         {{ nf.format(item.forkID.next) }}
                       </template>
                     </extended-list-item>
                     <extended-list-item
-                      title="Head"
-                      tooltip="Unique identifier for of this node"
+                      :title="$t('nodes.head.title')"
+                      :tooltip="$t('nodes.head.tooltip')"
                     >
                       <template #subtitle>
                         {{ item.head }}
                       </template>
-                      <template #action> Total Difficulty </template>
+                      <template #action>{{
+                        $t('nodes.head.action1')
+                      }}</template>
                       <template #action2>
                         {{ nf.format(item.TD) }}
                       </template>
                     </extended-list-item>
                     <extended-list-item
                       :title="
-                        'Discovery (score: ' +
+                        $t('nodes.discovery.title') +
+                        ' (' +
+                        $t('nodes.discovery.score') +
+                        ': ' +
                         nf.format(item.discoveryInfo.score) +
                         ')'
                       "
-                      tooltip="Unique identifier for of this node"
+                      :tooltip="$t('nodes.discovery.tooltip')"
                     >
                       <template #subtitle
-                        >First Response - {{ item.discoveryInfo.firstResponse }}
+                        >{{ $t('nodes.discovery.subtitle1') }} -
+                        {{ item.discoveryInfo.firstResponse }}
                       </template>
                       <template #action>
-                        Last Response - {{ item.discoveryInfo.lastResponse }}
+                        {{ $t('nodes.discovery.action1') }} -
+                        {{ item.discoveryInfo.lastResponse }}
                       </template>
                       <template #action2>
-                        Last Check - {{ item.discoveryInfo.lastCheck }}
+                        {{ $t('nodes.discovery.action2') }} -
+                        {{ item.discoveryInfo.lastCheck }}
                       </template>
                     </extended-list-item>
                   </v-list>
@@ -159,23 +174,43 @@ export default {
       tab: null,
       nf: new Intl.NumberFormat(this.locale, {}),
       chartHeaders: [
-        { text: 'ID', align: 'start', sortable: false, value: 'id' },
-        { text: 'IP', align: 'start', sortable: false, value: 'ip' },
-        { text: 'Client', align: 'start', sortable: true, value: 'name' },
-        { text: 'Version', sortable: true, value: 'release' },
         {
-          text: 'Fork ID',
+          text: this.$t('nodes.nodeId.title'),
+          align: 'start',
+          sortable: false,
+          value: 'id',
+        },
+        {
+          text: this.$t('nodes.ipAddress.title'),
+          align: 'start',
+          sortable: false,
+          value: 'ip',
+        },
+        {
+          text: this.$t('nodes.client.title'),
+          align: 'start',
+          sortable: true,
+          value: 'name',
+        },
+        { text: this.$t('nodes.version'), sortable: true, value: 'release' },
+        {
+          text: this.$t('nodes.forkId.title'),
           align: 'start',
           sortable: true,
           value: 'forkID.tag',
         },
         {
-          text: 'Fork Next',
+          text: this.$t('nodes.nextFork'),
           align: 'start',
           sortable: true,
           value: 'forkID.next',
         },
-        { text: 'Head', align: 'start', sortable: true, value: 'head' },
+        {
+          text: this.$t('nodes.head.title'),
+          align: 'start',
+          sortable: true,
+          value: 'head',
+        },
       ],
     }
   },
