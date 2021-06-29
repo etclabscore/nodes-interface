@@ -180,3 +180,9 @@ table {
 .nuxt-content>table>tbody>tr:nth-child(odd) {
   background:var(--v-zebrastripes-base) !important; // 1e1e1e
 }
+
+// firefox box-shadow fix
+
+.v-sheet.v-app-bar.v-toolbar {
+  box-shadow: inset 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
+}
