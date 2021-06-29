@@ -59,7 +59,11 @@
                 </thead>
                 <tbody>
                   <tr v-for="(count, name) of forkIds.table" :key="name">
-                    <td class="text-left">{{ name }}</td>
+                    <td class="text-left">
+                      <nuxt-link :to="'/fork/' + name.toLowerCase()">
+                        {{ name }}
+                      </nuxt-link>
+                    </td>
                     <td class="text-right">
                       {{ count }} ({{ percent(count, totalNodes) }}%)
                     </td>

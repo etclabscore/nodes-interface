@@ -31,7 +31,7 @@
             <v-tab>{{ $t('nodes.raw') }}</v-tab>
           </v-tabs>
           <v-tabs-items v-model="tab">
-            <v-tab-item :key="overview">
+            <v-tab-item>
               <v-list dense>
                 <extended-list-item
                   :title="$t('nodes.nodeId.title')"
@@ -128,7 +128,7 @@
                 </extended-list-item>
               </v-list>
             </v-tab-item>
-            <v-tab-item :key="raw">
+            <v-tab-item>
               <pre class="mb-6"><code>{{ item }}</code></pre>
             </v-tab-item>
           </v-tabs-items>
