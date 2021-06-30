@@ -7,8 +7,8 @@
         :table="nodes.clients.table"
         :labels="$store.state.nodes.clients.chart.labels"
         :series="$store.state.nodes.clients.chart.series"
-        icon="mdi-console"
         :total="totalNodes"
+        icon="mdi-console"
         to="client"
       />
       <table-chart-card
@@ -16,8 +16,8 @@
         :table="nodes.forkIds.table"
         :labels="nodes.forkIds.chart.labels"
         :series="nodes.forkIds.chart.series"
-        icon="mdi-directions-fork"
         :total="totalNodes"
+        icon="mdi-directions-fork"
         to="fork"
       />
       <table-chart-card
@@ -25,8 +25,9 @@
         :table="nodes.protocols.table"
         :labels="nodes.protocols.chart.labels"
         :series="nodes.protocols.chart.series"
-        icon="mdi-handshake"
         :total="totalNodes"
+        icon="mdi-handshake"
+        to="protocol"
       />
     </v-col>
   </v-row>
