@@ -38,11 +38,6 @@ export default {
   components: {
     TableChartCard,
   },
-  data() {
-    return {
-      tab: null,
-    }
-  },
   async fetch() {
     await this.$store.dispatch('nodes/set_nodes')
   },
@@ -64,23 +59,6 @@ export default {
     },
     nodes() {
       return this.$store.state.nodes
-    },
-    clients() {
-      return this.$store.state.nodes.clients
-    },
-    forkIds() {
-      return this.$store.state.nodes.forkIds
-    },
-    protocols() {
-      return this.$store.state.nodes.protocols
-    },
-  },
-  methods: {
-    percent(count, total) {
-      return ((count / total) * 100).toFixed(1)
-    },
-    getChartSeries(chart) {
-      return this.$store.state.nodes[chart].chart.series
     },
   },
 }
