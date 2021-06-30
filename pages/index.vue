@@ -9,6 +9,7 @@
         :series="$store.state.nodes.clients.chart.series"
         icon="mdi-console"
         :total="totalNodes"
+        to="client"
       />
       <table-chart-card
         :title="$t('home.forkIds')"
@@ -17,6 +18,7 @@
         :series="nodes.forkIds.chart.series"
         icon="mdi-directions-fork"
         :total="totalNodes"
+        to="fork"
       />
       <table-chart-card
         :title="$t('home.protocols')"
@@ -42,18 +44,6 @@ export default {
     await this.$store.dispatch('nodes/set_nodes')
   },
   computed: {
-    params() {
-      return this.$store.state.params
-    },
-    theme() {
-      return this.$vuetify.theme.dark ? 'dark' : 'light'
-    },
-    isMobile() {
-      return this.$store.state.mobile
-    },
-    locale() {
-      return this.$i18n.locale
-    },
     totalNodes() {
       return this.$store.state.nodes.raw.length
     },

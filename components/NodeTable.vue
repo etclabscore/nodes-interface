@@ -26,7 +26,7 @@
     >
       <template #expanded-item="{ headers, item }">
         <td :colspan="headers.length">
-          <v-tabs v-model="tab" grow>
+          <v-tabs v-model="tab">
             <v-tab>{{ $t('nodes.overview') }}</v-tab>
             <v-tab>{{ $t('nodes.raw') }}</v-tab>
           </v-tabs>
@@ -122,7 +122,9 @@
               </v-list>
             </v-tab-item>
             <v-tab-item>
-              <pre class="mb-6"><code>{{ item }}</code></pre>
+              <pre
+                class="mb-6"
+              ><code style="overflow-x: auto">{{ item }}</code></pre>
             </v-tab-item>
           </v-tabs-items>
         </td>
@@ -211,6 +213,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.mobile
+    },
   },
   methods: {
     formatHash(hash, start, end) {

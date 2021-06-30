@@ -25,7 +25,7 @@ export default {
   asyncData({ params, store }) {
     const client = `${params.pathMatch || 'index'}`
     const nodes = store.state.nodes.raw
-    const filtered = nodes.filter((node) => node.name.toLowerCase() === client)
+    const filtered = nodes.filter((node) => node.name === client)
     return {
       client,
       nodes: filtered,

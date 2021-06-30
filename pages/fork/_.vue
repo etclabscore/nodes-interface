@@ -25,9 +25,7 @@ export default {
   asyncData({ params, store }) {
     const forkId = `${params.pathMatch || 'index'}`
     const nodes = store.state.nodes.raw
-    const filtered = nodes.filter(
-      (node) => node.forkID.tag.toLowerCase() === forkId
-    )
+    const filtered = nodes.filter((node) => node.forkID.tag === forkId)
     return {
       forkId,
       nodes: filtered,

@@ -16,7 +16,16 @@
             </thead>
             <tbody>
               <tr v-for="(count, name) of table" :key="name">
-                <td class="text-left">{{ name }}</td>
+                <template v-if="!to">
+                  <td class="text-left">{{ name }}</td>
+                </template>
+                <template v-else>
+                  <td class="text-left">
+                    <nuxt-link :to="'/' + to + '/' + name">
+                      {{ name }}
+                    </nuxt-link>
+                  </td>
+                </template>
                 <td class="text-right">
                   {{ count }} ({{ percent(count, total) }}%)
                 </td>
@@ -72,6 +81,12 @@ export default {
     total: {
       type: Number,
       required: true,
+    },
+    to: {
+      type: String,
+      default() {
+        return null
+      },
     },
   },
   data() {
