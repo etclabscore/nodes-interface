@@ -4,7 +4,7 @@
       cols="12"
       :class="{
         'pa-1': true,
-        'pb-12': true,
+        'pb-1': true,
         'pt-12': isMobile,
         'pt-1': !isMobile,
       }"
@@ -46,8 +46,9 @@
       </resizable-drawer>
       <node-table
         :nodes="nodes.raw"
-        :pagination="false"
+        :pagination="true"
         :title="$t('home.title')"
+        :breadcrumbs="breadcrumbs"
       />
     </v-col>
   </v-row>
@@ -64,6 +65,22 @@ export default {
     NodeTable,
     TableChartCard,
     ResizableDrawer,
+  },
+  data() {
+    return {
+      breadcrumbs: [
+        {
+          text: 'Mainnet',
+          disabled: true,
+          to: '/',
+        },
+        {
+          text: 'Nodes',
+          disabled: true,
+          to: '/',
+        },
+      ],
+    }
   },
   async fetch() {
     await this.$store.dispatch('nodes/set_nodes')

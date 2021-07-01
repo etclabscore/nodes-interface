@@ -27,6 +27,19 @@
       :disable-pagination="!pagination"
       :hide-default-footer="!pagination"
     >
+      <template #top="{ pagination, options, updateOptions }">
+        <v-data-footer
+          :pagination="pagination"
+          :options="options"
+          items-per-page-text="$vuetify.dataTable.itemsPerPageText"
+          class="bb-1"
+          @update:options="updateOptions"
+        >
+          <template #prepend>
+            <v-breadcrumbs :items="breadcrumbs" />
+          </template>
+        </v-data-footer>
+      </template>
       <template #expanded-item="{ headers, item }">
         <td :colspan="headers.length">
           <v-tabs v-model="tab">
@@ -163,11 +176,21 @@ export default {
     },
     pagination: {
       type: Boolean,
-      default: false,
+      default() {
+        return false
+      },
     },
     title: {
       type: String,
-      default: '',
+      default() {
+        return ''
+      },
+    },
+    breadcrumbs: {
+      type: Array,
+      default() {
+        return []
+      },
     },
   },
   data() {

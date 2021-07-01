@@ -1,7 +1,12 @@
 html {
-  overflow-y: auto !important;
+  overflow-y: hidden !important;
   scrollbar-color: var(--v-primary-base) #2f2f2f;
   scrollbar-width: thin;
+}
+
+.v-main__wrap {
+  overflow-y: auto !important;
+  max-height: calc( 100vh - 86px ) !important;
 }
 
 a {
@@ -150,6 +155,10 @@ table {
   border-top: 1px solid var(--v-staticborders-base) !important;
 }
 
+.bb-1 {
+  border-bottom: 1px solid var(--v-staticborders-base) !important;
+}
+
 // header links
 .nuxt-content>h1>a>span.header-link,
 .nuxt-content>h2>a>span.header-link,
@@ -186,3 +195,5 @@ table {
 .v-sheet.v-app-bar.v-toolbar {
   box-shadow: inset 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
 }
+
+
