@@ -1,45 +1,69 @@
 <template>
-  <v-row justify="center" align="center" class="pa-0" no-gutters>
-    <v-col cols="12" md="8" sm="12" class="text-center py-12">
-      <h2>{{ $t('home.title') }}</h2>
-      <table-chart-card
-        :title="$t('home.clients')"
-        :table="nodes.clients.table"
-        :labels="$store.state.nodes.clients.chart.labels"
-        :series="$store.state.nodes.clients.chart.series"
-        :total="totalNodes"
-        icon="mdi-console"
-        to="client"
-      />
-      <table-chart-card
-        :title="$t('home.forkIds')"
-        :table="nodes.forkIds.table"
-        :labels="nodes.forkIds.chart.labels"
-        :series="nodes.forkIds.chart.series"
-        :total="totalNodes"
-        icon="mdi-directions-fork"
-        to="fork"
-      />
-      <table-chart-card
-        :title="$t('home.protocols')"
-        :table="nodes.protocols.table"
-        :labels="nodes.protocols.chart.labels"
-        :series="nodes.protocols.chart.series"
-        :total="totalNodes"
-        icon="mdi-handshake"
-        to="protocol"
+  <v-row justify="center" align="center" class="pa-0">
+    <v-col
+      cols="12"
+      :class="{
+        'pa-1': true,
+        'pb-12': true,
+        'pt-12': isMobile,
+        'pt-1': !isMobile,
+      }"
+    >
+      <resizable-drawer id="charts" side="right" :dark="darkmode">
+        <table-chart-card
+          :title="$t('home.clients')"
+          :table="nodes.clients.table"
+          :labels="nodes.clients.chart.labels"
+          :series="nodes.clients.chart.series"
+          :total="totalNodes"
+          icon="mdi-console"
+          to="client"
+          class="mr-1 mb-1 mt-1"
+          style="margin-left: 6px"
+        />
+        <table-chart-card
+          :title="$t('home.forkIds')"
+          :table="nodes.forkIds.table"
+          :labels="nodes.forkIds.chart.labels"
+          :series="nodes.forkIds.chart.series"
+          :total="totalNodes"
+          icon="mdi-directions-fork"
+          to="fork"
+          class="mr-1 mb-1"
+          style="margin-left: 6px"
+        />
+        <table-chart-card
+          :title="$t('home.protocols')"
+          :table="nodes.protocols.table"
+          :labels="nodes.protocols.chart.labels"
+          :series="nodes.protocols.chart.series"
+          :total="totalNodes"
+          icon="mdi-handshake"
+          to="protocol"
+          class="mr-1 mb-1"
+          style="margin-left: 6px"
+        />
+      </resizable-drawer>
+      <node-table
+        :nodes="nodes.raw"
+        :pagination="false"
+        :title="$t('home.title')"
       />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import NodeTable from '~/components/NodeTable.vue'
 import TableChartCard from '~/components/TableChartCard.vue'
+import ResizableDrawer from '~/components/app/ResizableDrawer.vue'
 
 export default {
   name: 'Home',
   components: {
+    NodeTable,
     TableChartCard,
+    ResizableDrawer,
   },
   async fetch() {
     await this.$store.dispatch('nodes/set_nodes')
@@ -50,6 +74,12 @@ export default {
     },
     nodes() {
       return this.$store.state.nodes
+    },
+    isMobile() {
+      return this.$store.state.mobile
+    },
+    darkmode() {
+      return this.$vuetify.theme.dark
     },
   },
 }

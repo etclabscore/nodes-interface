@@ -1,11 +1,11 @@
 <template>
-  <v-card tile class="mt-2">
+  <v-card tile>
+    <v-card-title>
+      <v-icon class="mr-1">{{ icon }}</v-icon>
+      {{ title }}
+    </v-card-title>
     <div class="d-flex flex-no-wrap justify-space-between">
       <div style="width: 100%">
-        <v-card-title>
-          <v-icon class="mr-1">{{ icon }}</v-icon>
-          {{ title }}
-        </v-card-title>
         <v-simple-table style="width: 100%">
           <template #default>
             <thead>
@@ -96,11 +96,6 @@ export default {
           id: this.title.toLowerCase() + '-chart',
           width: '100%',
           type: 'pie',
-        },
-        theme: {
-          monochrome: {
-            enabled: true,
-          },
         },
         plotOptions: {
           pie: {

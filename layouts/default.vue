@@ -4,9 +4,6 @@
       <v-btn icon nuxt to="/" class="mr-1">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn icon nuxt to="/nodes" class="mr-1">
-        <v-icon>mdi-server-network</v-icon>
-      </v-btn>
       <v-btn icon nuxt to="/forks" class="mr-1">
         <v-icon>mdi-directions-fork</v-icon>
       </v-btn>

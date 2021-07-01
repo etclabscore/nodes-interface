@@ -12,6 +12,9 @@
         single-line
         hide-details
       ></v-text-field>
+      <v-btn icon class="ml-2" @click="$store.dispatch('drawers/toggleCharts')">
+        <v-icon>mdi-chart-pie</v-icon>
+      </v-btn>
     </v-card-title>
     <v-data-table
       :search="search"

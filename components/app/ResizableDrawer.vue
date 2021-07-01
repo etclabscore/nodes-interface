@@ -39,7 +39,7 @@ export default {
   data: () => {
     return {
       shown: false,
-      width: 256,
+      width: 610,
       borderSize: 2,
     }
   },
