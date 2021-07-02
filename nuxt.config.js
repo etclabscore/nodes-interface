@@ -20,7 +20,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
-    title: locale.title || 'Octano Static',
+    title: locale.title || 'Node Explorer',
     htmlAttrs: {
       lang: config.i18n.default,
     },
@@ -30,7 +30,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: locale.home.desc || 'we are all dev',
+        content: locale.subtitle || 'explore the nodes',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: config.favicon }],
