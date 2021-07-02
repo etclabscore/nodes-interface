@@ -1,4 +1,4 @@
-import mockData from '../assets/mockNode3.json'
+import mockData from '../assets/mockNode4.json'
 import forkIds from '../assets/forkIds.json'
 
 export const state = () => ({
@@ -66,25 +66,31 @@ const parseNodes = function (nodes) {
     node.release = name[1]
     node.platform = name[2]
     node.extra = name[3]
-    node.forkID.tag = getForkId(node.forkID.current)
-    if (node.networkID === 1) {
-      if (clients[node.name]) {
-        clients[node.name] = clients[node.name] + 1
-      } else {
-        clients[node.name] = 1
-      }
-      if (forkIds[node.forkID.tag]) {
-        forkIds[node.forkID.tag] = forkIds[node.forkID.tag] + 1
-      } else {
-        forkIds[node.forkID.tag] = 1
-      }
-      if (protocols[node.protocolVersion]) {
-        protocols[node.protocolVersion] = protocols[node.protocolVersion] + 1
-      } else {
-        protocols[node.protocolVersion] = 1
-      }
-      nodesFiltered.push(node)
+    node.forkId = {
+      tag: getForkId(node.protocols.eth.forkId.current),
+      current: node.protocols.eth.forkId.hash,
+      next: node.protocols.eth.forkId.next,
     }
+    // if (node.networkID === 1) {
+    if (clients[node.name]) {
+      clients[node.name] = clients[node.name] + 1
+    } else {
+      clients[node.name] = 1
+    }
+    if (forkIds[node.protocols.eth.forkId.tag]) {
+      forkIds[node.protocols.eth.forkId.tag] =
+        forkIds[node.protocols.eth.forkId.tag] + 1
+    } else {
+      forkIds[node.protocols.eth.forkId.tag] = 1
+    }
+    if (protocols[node.protocols.eth.version]) {
+      protocols[node.protocols.eth.version] =
+        protocols[node.protocols.eth.version] + 1
+    } else {
+      protocols[node.protocols.eth.version] = 1
+    }
+    nodesFiltered.push(node)
+    // }
   }
   return { nodes: nodesFiltered, clients, forkIds, protocols }
 }

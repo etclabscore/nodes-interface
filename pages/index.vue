@@ -10,6 +10,11 @@
       }"
     >
       <resizable-drawer id="charts" side="right" :dark="darkmode">
+        <v-toolbar v-if="isMobile">
+          <v-btn icon @click="$store.dispatch('drawers/toggleCharts')"
+            ><v-icon>mdi-close</v-icon></v-btn
+          >
+        </v-toolbar>
         <table-chart-card
           :title="$t('home.clients')"
           :table="nodes.clients.table"
@@ -70,7 +75,7 @@ export default {
     return {
       breadcrumbs: [
         {
-          text: 'Mainnet',
+          text: 'ETC Mainnet',
           disabled: true,
           to: '/',
         },

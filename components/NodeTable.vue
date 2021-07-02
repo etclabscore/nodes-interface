@@ -2,7 +2,7 @@
   <v-card tile>
     <v-card-title>
       <v-icon class="mr-2">mdi-server-network</v-icon>
-      {{ title }} ({{ nodes.length }})
+      {{ title }}
       <v-spacer />
       <v-text-field
         v-model="search"
@@ -24,8 +24,12 @@
       :expanded.sync="expanded"
       item-key="id"
       :show-expand="!isMobile"
-      :disable-pagination="!pagination"
-      :hide-default-footer="!pagination"
+      :hide-default-footer="true"
+      :items-per-page="-1"
+      :loading-text="$t('nodes.loading')"
+      :no-data-text="$t('nodes.noData')"
+      :no-results-text="$t('nodes.noResults')"
+      :footer-props="footerProps"
     >
       <template #top="{ pagination, options, updateOptions }">
         <v-data-footer
@@ -35,7 +39,7 @@
           class="bb-1"
           @update:options="updateOptions"
         >
-          <template #prepend>
+          <template v-if="!isMobile" #prepend>
             <v-breadcrumbs :items="breadcrumbs" />
           </template>
         </v-data-footer>
@@ -92,11 +96,11 @@
                   :tooltip="$t('nodes.forkId.tooltip')"
                 >
                   <template #subtitle>
-                    {{ item.forkID.tag }} ({{ item.forkID.current }})
+                    {{ item.forkId.tag }} ({{ item.forkId.current }})
                   </template>
                   <template #action> {{ $t('nodes.forkId.action1') }}</template>
                   <template #action2>
-                    {{ nf.format(item.forkID.next) }}
+                    {{ nf.format(item.forkId.next) }}
                   </template>
                 </extended-list-item>
                 <extended-list-item
@@ -109,30 +113,6 @@
                   <template #action>{{ $t('nodes.head.action1') }}</template>
                   <template #action2>
                     {{ nf.format(item.TD) }}
-                  </template>
-                </extended-list-item>
-                <extended-list-item
-                  :title="
-                    $t('nodes.discovery.title') +
-                    ' (' +
-                    $t('nodes.discovery.score') +
-                    ': ' +
-                    nf.format(item.discoveryInfo.score) +
-                    ')'
-                  "
-                  :tooltip="$t('nodes.discovery.tooltip')"
-                >
-                  <template #subtitle
-                    >{{ $t('nodes.discovery.subtitle1') }} -
-                    {{ item.discoveryInfo.firstResponse }}
-                  </template>
-                  <template #action>
-                    {{ $t('nodes.discovery.action1') }} -
-                    {{ item.discoveryInfo.lastResponse }}
-                  </template>
-                  <template #action2>
-                    {{ $t('nodes.discovery.action2') }} -
-                    {{ item.discoveryInfo.lastCheck }}
                   </template>
                 </extended-list-item>
               </v-list>
@@ -148,14 +128,14 @@
       <template #[`item.id`]="{ item }">
         {{ formatHash(item.id, 10, 0) }}
       </template>
-      <template #[`item.head`]="{ item }">
-        {{ formatHash(item.head, 10, 8) }}
+      <template #[`item.protocols.eth.head`]="{ item }">
+        {{ formatHash(item.protocols.eth.head, 10, 8) }}
       </template>
       <template #[`item.release`]="{ item }">
         {{ formatRelease(item.release) }}
       </template>
-      <template #[`item.forkID.next`]="{ item }">
-        {{ nf.format(item.forkID.next) }}
+      <template #[`item.forkId.next`]="{ item }">
+        {{ nf.format(item.forkId.next) }}
       </template>
     </v-data-table>
   </v-card>
@@ -173,12 +153,6 @@ export default {
     nodes: {
       type: Array,
       required: true,
-    },
-    pagination: {
-      type: Boolean,
-      default() {
-        return false
-      },
     },
     title: {
       type: String,
@@ -199,6 +173,10 @@ export default {
       expanded: [],
       tab: null,
       nf: new Intl.NumberFormat(this.locale, {}),
+      footerProps: {
+        '#items-per-page-all-text': this.$t('nodes.all'),
+        'items-per-page-text': this.$t('nodes.perPage'),
+      },
       chartHeaders: [
         {
           text: this.$t('nodes.nodeId.title'),
@@ -223,19 +201,19 @@ export default {
           text: this.$t('nodes.forkId.title'),
           align: 'start',
           sortable: true,
-          value: 'forkID.tag',
+          value: 'forkId.tag',
         },
         {
           text: this.$t('nodes.nextFork'),
           align: 'start',
           sortable: true,
-          value: 'forkID.next',
+          value: 'forkId.next',
         },
         {
           text: this.$t('nodes.head.title'),
           align: 'start',
           sortable: true,
-          value: 'head',
+          value: 'protocols.eth.head',
         },
       ],
     }
