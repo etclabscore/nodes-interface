@@ -54,7 +54,7 @@ export const actions = {
     if (!state.updated) {
       // TODO(iquidus): handle this better
       const { data } = await axios.get(
-        'https://peers.etccore.in/admin_peers.result.json'
+        'https://peers.etccore.in/v2/admin_peers.result.json'
       )
 
       const { nodes, clients, forks, protocols } = parseNodes(data)
