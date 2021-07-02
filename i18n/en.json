@@ -13,6 +13,7 @@
     "search": "Search",
     "overview": "Overview",
     "raw": "Raw",
+    "all": "All",
     "version": "Version",
     "nextFork": "Next Fork",
     "nodeId": {
@@ -26,6 +27,10 @@
     "client": {
       "title": "Client",
       "tooltip": "The client software this node is running"
+    },
+    "enode": {
+      "title": "Enode",
+      "tooltip": "This nodes URL scheme (used with addPeer)"
     },
     "protocols": {
       "title": "Protocols",

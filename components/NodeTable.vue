@@ -79,6 +79,14 @@
                   </template>
                 </extended-list-item>
                 <extended-list-item
+                  :title="$t('nodes.enode.title')"
+                  :tooltip="$t('nodes.enode.tooltip')"
+                >
+                  <template #subtitle>
+                    {{ item.enode }}
+                  </template>
+                </extended-list-item>
+                <extended-list-item
                   :title="$t('nodes.protocols.title')"
                   :tooltip="$t('nodes.protocols.tooltip')"
                 >
