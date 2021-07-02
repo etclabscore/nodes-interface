@@ -4,9 +4,6 @@
       <v-btn icon nuxt to="/" class="mr-1">
         <v-icon>mdi-home</v-icon>
       </v-btn>
-      <v-btn icon nuxt to="/forks" class="mr-1">
-        <v-icon>mdi-directions-fork</v-icon>
-      </v-btn>
       <v-spacer />
       <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
         <v-icon>mdi-theme-light-dark</v-icon>
@@ -53,7 +50,9 @@
       class="px-2"
     >
       <v-spacer />
-      <span style="color: #fff"></span>
+      <span style="color: #fff">
+        {{ $t('footer.copyright') }}
+      </span>
       <v-spacer />
     </v-footer>
     <v-btn

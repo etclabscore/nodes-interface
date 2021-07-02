@@ -22,7 +22,6 @@
           :series="nodes.clients.chart.series"
           :total="totalNodes"
           icon="mdi-console"
-          to="client"
           class="mr-1 mb-1 mt-1"
           style="margin-left: 6px"
         />
@@ -33,7 +32,6 @@
           :series="nodes.forks.current.chart.series"
           :total="totalNodes"
           icon="mdi-directions-fork"
-          to="fork"
           class="mr-1 mb-1"
           style="margin-left: 6px"
         />
@@ -44,7 +42,6 @@
           :series="nodes.forks.next.chart.series"
           :total="totalNodes"
           icon="mdi-directions-fork"
-          to="fork"
           class="mr-1 mb-1"
           style="margin-left: 6px"
         />
@@ -55,7 +52,6 @@
           :series="nodes.protocols.chart.series"
           :total="totalNodes"
           icon="mdi-handshake"
-          to="protocol"
           class="mr-1 mb-1"
           style="margin-left: 6px"
         />

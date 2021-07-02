@@ -48,5 +48,8 @@
       "action1": "Total Difficulty"
     }
   },
-  "helpTranslate": "Help Translate"
+  "helpTranslate": "Help Translate",
+  "footer": {
+    "copyright": "Copyright Ethereum Classic Labs. All rights reserved."
+  }
 }
