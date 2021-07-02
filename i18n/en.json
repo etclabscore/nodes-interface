@@ -2,7 +2,7 @@
   "title": "ETC Node Explorer",
   "subtitle": "Ethereum Classic mainnet node explorer.",
   "home": {
-    "title": "Ethereum Classic Node Explorer",
+    "title": "ETC Node Explorer",
     "clients": "Clients",
     "totalNodes": "Total Nodes",
     "forkIdCurrent": "ForkId (Current)",
@@ -50,6 +50,6 @@
   },
   "helpTranslate": "Help Translate",
   "footer": {
-    "copyright": "Copyright Ethereum Classic Labs. All rights reserved."
+    "copyright": "Built by Ethereum Classic Labs."
   }
 }

@@ -1,4 +1,4 @@
-import mockData from '../assets/mockNode4.json'
+import axios from 'axios'
 import forks from '../assets/forks.json'
 
 export const state = () => ({
@@ -50,9 +50,14 @@ export const mutations = {
 }
 
 export const actions = {
-  set_nodes({ commit, state }) {
+  async set_nodes({ commit, state }) {
     if (!state.updated) {
-      const { nodes, clients, forks, protocols } = parseNodes(mockData)
+      // TODO(iquidus): handle this better
+      const { data } = await axios.get(
+        'https://peers.etccore.in/admin_peers.result.json'
+      )
+
+      const { nodes, clients, forks, protocols } = parseNodes(data)
       commit('SET_NODES', nodes)
       commit('SET_CLIENTS', clients)
       commit('SET_FORKIDS', forks)
@@ -69,47 +74,51 @@ const parseNodes = function (nodes) {
   }
   const protocols = {}
   const nodesFiltered = []
+
   for (const node of nodes) {
-    const name = node.name.split('/')
-    node.client = {
-      name: name[0],
-      release: name[1],
-      platform: name[2],
-      extra: name[3],
-    }
+    // filter out any nodes that didnt get past handshake.
+    if (node.protocols.eth !== 'handshake') {
+      const name = node.name.split('/')
+      node.client = {
+        name: name[0],
+        release: name[1],
+        platform: name[2],
+        extra: name[3],
+      }
 
-    if (clients[node.client.name]) {
-      clients[node.client.name] = clients[node.client.name] + 1
-    } else {
-      clients[node.client.name] = 1
-    }
+      if (clients[node.client.name]) {
+        clients[node.client.name] = clients[node.client.name] + 1
+      } else {
+        clients[node.client.name] = 1
+      }
 
-    node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
-    node.protocols.eth.forkId.nextTag = getForkBlock(
-      node.protocols.eth.forkId.next
-    )
+      node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
+      node.protocols.eth.forkId.nextTag = getForkBlock(
+        node.protocols.eth.forkId.next
+      )
 
-    if (forks.current[node.protocols.eth.forkId.tag]) {
-      forks.current[node.protocols.eth.forkId.tag] =
-        forks.current[node.protocols.eth.forkId.tag] + 1
-    } else {
-      forks.current[node.protocols.eth.forkId.tag] = 1
-    }
+      if (forks.current[node.protocols.eth.forkId.tag]) {
+        forks.current[node.protocols.eth.forkId.tag] =
+          forks.current[node.protocols.eth.forkId.tag] + 1
+      } else {
+        forks.current[node.protocols.eth.forkId.tag] = 1
+      }
 
-    if (forks.next[node.protocols.eth.forkId.nextTag]) {
-      forks.next[node.protocols.eth.forkId.nextTag] =
-        forks.next[node.protocols.eth.forkId.nextTag] + 1
-    } else {
-      forks.next[node.protocols.eth.forkId.nextTag] = 1
-    }
+      if (forks.next[node.protocols.eth.forkId.nextTag]) {
+        forks.next[node.protocols.eth.forkId.nextTag] =
+          forks.next[node.protocols.eth.forkId.nextTag] + 1
+      } else {
+        forks.next[node.protocols.eth.forkId.nextTag] = 1
+      }
 
-    if (protocols[node.protocols.eth.version]) {
-      protocols[node.protocols.eth.version] =
-        protocols[node.protocols.eth.version] + 1
-    } else {
-      protocols[node.protocols.eth.version] = 1
+      if (protocols[node.protocols.eth.version]) {
+        protocols[node.protocols.eth.version] =
+          protocols[node.protocols.eth.version] + 1
+      } else {
+        protocols[node.protocols.eth.version] = 1
+      }
+      nodesFiltered.push(node)
     }
-    nodesFiltered.push(node)
   }
   return { nodes: nodesFiltered, clients, forks, protocols }
 }

@@ -1,15 +1,12 @@
 <template>
   <v-row justify="center" align="center" class="pa-0">
-    <v-col
-      cols="12"
-      :class="{
-        'pa-1': true,
-        'pb-1': true,
-        'pt-12': isMobile,
-        'pt-1': !isMobile,
-      }"
-    >
-      <resizable-drawer id="charts" side="right" :dark="darkmode">
+    <v-col cols="12" class="pa-1">
+      <resizable-drawer
+        v-if="nodes.raw.length > 0"
+        id="charts"
+        side="right"
+        :dark="darkmode"
+      >
         <v-toolbar v-if="isMobile">
           <v-btn icon @click="$store.dispatch('drawers/toggleCharts')"
             ><v-icon>mdi-close</v-icon></v-btn
