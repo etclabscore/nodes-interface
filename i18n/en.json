@@ -16,7 +16,7 @@
     "raw": "Raw",
     "all": "All",
     "version": "Version",
-    "nextFork": "Next Fork",
+    "nextFork": "Fork ID (Next)",
     "nodeId": {
       "title": "Node ID",
       "tooltip": "Unique identifier of this node"
@@ -38,7 +38,7 @@
       "tooltip": "Protocol versions supported by this node"
     },
     "forkId": {
-      "title": "Fork ID",
+      "title": "Fork ID (Current)",
       "tooltip": "The current forkId reported by this node",
       "action1": "Next fork block"
     },
