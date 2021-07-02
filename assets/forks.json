@@ -1,0 +1,28 @@
+{
+  "id": {
+    "0xfc64ec04": "Frontier",
+    "0x97c2c34c": "Homestead",
+    "0xdb06803f": "Gas Reprice",
+    "0xaff4bed4": "Die Hard",
+    "0xf79a63c0": "Gotham",
+    "0x744899d6": "Defuse Difficulty Bomb",
+    "0x518b59c6": "Atlantis",
+    "0x7ba22882": "Agharta",
+    "0x9007bfcc": "Phoenix",
+    "0xdb63a1ca": "Thanos",
+    "0x0f6bf187": "Magneto"
+  },
+  "block": {
+    "0": "None",
+    "1150000": "Homestead",
+    "2500000": "Gas Reprice",
+    "3000000": "Die Hard",
+    "5000000": "Gotham",
+    "5900000": "Defuse Difficulty Bomb",
+    "8772000": "Atlantis",
+    "9573000": "Agharta",
+    "10500839": "Phoenix",
+    "11700000": "Thanos",
+    "13189133": "Magneto"
+  }
+}

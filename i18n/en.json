@@ -5,7 +5,8 @@
     "title": "Ethereum Classic Node Explorer",
     "clients": "Clients",
     "totalNodes": "Total Nodes",
-    "forkIds": "Fork IDs",
+    "forkIdCurrent": "ForkId (Current)",
+    "forkIdNext": "ForkId (Next)",
     "protocols": "Protocol Versions"
   },
   "nodes": {
@@ -45,14 +46,6 @@
       "title": "Head",
       "tooltip": "This nodes head blockhash and total difficulty",
       "action1": "Total Difficulty"
-    },
-    "discovery": {
-      "title": "Discovery",
-      "tooltip": "This nodes discovery info",
-      "action1": "Last Response",
-      "action2": "Last Check",
-      "subtitle1": "First Response",
-      "score": "score"
     }
   },
   "helpTranslate": "Help Translate"

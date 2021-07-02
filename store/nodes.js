@@ -1,10 +1,10 @@
 import mockData from '../assets/mockNode4.json'
-import forkIds from '../assets/forkIds.json'
+import forks from '../assets/forks.json'
 
 export const state = () => ({
   raw: [], // full list of nodes (all data) (used by nodes page)
   clients: {}, // data for clients table (used by home page)
-  forkIds: {}, // data for forkIds table (used by home page)
+  forks: {}, // data for forkIds table (used by home page)
   updated: false,
 })
 
@@ -21,12 +21,19 @@ export const mutations = {
       },
     }
   },
-  SET_FORKIDS(state, forkIds) {
-    state.forkIds = {
-      table: forkIds,
+  SET_FORKIDS(state, forks) {
+    state.forks.current = {
+      table: forks.current,
       chart: {
-        series: Object.values(forkIds),
-        labels: Object.keys(forkIds),
+        series: Object.values(forks.current),
+        labels: Object.keys(forks.current),
+      },
+    }
+    state.forks.next = {
+      table: forks.next,
+      chart: {
+        series: Object.values(forks.next),
+        labels: Object.keys(forks.next),
       },
     }
   },
@@ -45,10 +52,10 @@ export const mutations = {
 export const actions = {
   set_nodes({ commit, state }) {
     if (!state.updated) {
-      const { nodes, clients, forkIds, protocols } = parseNodes(mockData)
+      const { nodes, clients, forks, protocols } = parseNodes(mockData)
       commit('SET_NODES', nodes)
       commit('SET_CLIENTS', clients)
-      commit('SET_FORKIDS', forkIds)
+      commit('SET_FORKIDS', forks)
       commit('SET_PROTOCOLS', protocols)
     }
   },
@@ -56,7 +63,10 @@ export const actions = {
 
 const parseNodes = function (nodes) {
   const clients = {}
-  const forkIds = {}
+  const forks = {
+    current: {},
+    next: {},
+  }
   const protocols = {}
   const nodesFiltered = []
   for (const node of nodes) {
@@ -75,12 +85,20 @@ const parseNodes = function (nodes) {
     }
 
     node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
+    node.protocols.eth.forkId.nextTag = getForkBlock(node.protocols.eth.forkId.next)
 
-    if (forkIds[node.protocols.eth.forkId.tag]) {
-      forkIds[node.protocols.eth.forkId.tag] =
-        forkIds[node.protocols.eth.forkId.tag] + 1
+    if (forks.current[node.protocols.eth.forkId.tag]) {
+      forks.current[node.protocols.eth.forkId.tag] =
+        forks.current[node.protocols.eth.forkId.tag] + 1
     } else {
-      forkIds[node.protocols.eth.forkId.tag] = 1
+      forks.current[node.protocols.eth.forkId.tag] = 1
+    }
+
+    if (forks.next[node.protocols.eth.forkId.nextTag]) {
+      forks.next[node.protocols.eth.forkId.nextTag] =
+        forks.next[node.protocols.eth.forkId.nextTag] + 1
+    } else {
+      forks.next[node.protocols.eth.forkId.nextTag] = 1
     }
 
     if (protocols[node.protocols.eth.version]) {
@@ -91,9 +109,13 @@ const parseNodes = function (nodes) {
     }
     nodesFiltered.push(node)
   }
-  return { nodes: nodesFiltered, clients, forkIds, protocols }
+  return { nodes: nodesFiltered, clients, forks, protocols }
 }
 
 const getForkId = function (hash) {
-  return forkIds[hash] || hash
+  return forks.id[hash] || hash
+}
+
+const getForkBlock = function (number) {
+  return forks.block[number] || number
 }

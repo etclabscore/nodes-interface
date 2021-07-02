@@ -27,10 +27,21 @@
           style="margin-left: 6px"
         />
         <table-chart-card
-          :title="$t('home.forkIds')"
-          :table="nodes.forkIds.table"
-          :labels="nodes.forkIds.chart.labels"
-          :series="nodes.forkIds.chart.series"
+          :title="$t('home.forkIdCurrent')"
+          :table="nodes.forks.current.table"
+          :labels="nodes.forks.current.chart.labels"
+          :series="nodes.forks.current.chart.series"
+          :total="totalNodes"
+          icon="mdi-directions-fork"
+          to="fork"
+          class="mr-1 mb-1"
+          style="margin-left: 6px"
+        />
+        <table-chart-card
+          :title="$t('home.forkIdNext')"
+          :table="nodes.forks.next.table"
+          :labels="nodes.forks.next.chart.labels"
+          :series="nodes.forks.next.chart.series"
           :total="totalNodes"
           icon="mdi-directions-fork"
           to="fork"
