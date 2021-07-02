@@ -224,7 +224,7 @@ export default {
           text: this.$t('nodes.nextFork'),
           align: 'start',
           sortable: true,
-          value: 'protocols.eth.forkId.next',
+          value: 'protocols.eth.forkId.nextTag',
         },
         {
           text: this.$t('nodes.head.title'),
