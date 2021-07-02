@@ -85,7 +85,9 @@ const parseNodes = function (nodes) {
     }
 
     node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
-    node.protocols.eth.forkId.nextTag = getForkBlock(node.protocols.eth.forkId.next)
+    node.protocols.eth.forkId.nextTag = getForkBlock(
+      node.protocols.eth.forkId.next
+    )
 
     if (forks.current[node.protocols.eth.forkId.tag]) {
       forks.current[node.protocols.eth.forkId.tag] =
