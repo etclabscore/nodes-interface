@@ -1,11 +1,11 @@
 <template>
   <v-card tile>
-    <v-card-title>
-      <v-icon class="mr-1">{{ icon }}</v-icon>
-      {{ title }}
-    </v-card-title>
     <div class="d-flex flex-no-wrap justify-space-between">
       <div style="width: 100%">
+        <v-card-title>
+          <v-icon class="mr-1">{{ icon }}</v-icon>
+          {{ title }}
+        </v-card-title>
         <v-simple-table style="width: 100%">
           <template #default>
             <thead>
@@ -36,11 +36,11 @@
       </div>
       <apexchart
         v-if="!isMobile"
-        width="320"
+        width="256"
         type="pie"
         :options="getChartOptions()"
         :series="series"
-        class="mt-3"
+        class="my-3"
       ></apexchart>
     </div>
   </v-card>
