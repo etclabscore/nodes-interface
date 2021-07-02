@@ -6,7 +6,7 @@
     "clients": "Clients",
     "totalNodes": "Total Nodes",
     "forkIds": "Fork IDs",
-    "protocolVersions": "Protocol Versions"
+    "protocols": "Protocol Versions"
   },
   "nodes": {
     "nodes": "Nodes",
