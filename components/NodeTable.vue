@@ -67,7 +67,7 @@
                   :tooltip="$t('nodes.ipAddress.tooltip')"
                 >
                   <template #subtitle>
-                    {{ item.ip }}
+                    {{ formatIpAddress(item.network.remoteAddress) }}
                   </template>
                 </extended-list-item>
                 <extended-list-item
@@ -75,7 +75,7 @@
                   :tooltip="$t('nodes.client.tooltip')"
                 >
                   <template #subtitle>
-                    {{ item.fullname }}
+                    {{ item.name }}
                   </template>
                 </extended-list-item>
                 <extended-list-item
@@ -87,7 +87,7 @@
                   </template>
                   <template #action>
                     <v-chip label>
-                      {{ item.protocolVersion }}
+                      {{ item.protocols.eth.version }}
                     </v-chip>
                   </template>
                 </extended-list-item>
@@ -96,11 +96,13 @@
                   :tooltip="$t('nodes.forkId.tooltip')"
                 >
                   <template #subtitle>
-                    {{ item.forkId.tag }} ({{ item.forkId.current }})
+                    {{ item.protocols.eth.forkId.tag }} ({{
+                      item.protocols.eth.forkId.hash
+                    }})
                   </template>
                   <template #action> {{ $t('nodes.forkId.action1') }}</template>
                   <template #action2>
-                    {{ nf.format(item.forkId.next) }}
+                    {{ nf.format(item.protocols.eth.forkId.next) }}
                   </template>
                 </extended-list-item>
                 <extended-list-item
@@ -108,11 +110,11 @@
                   :tooltip="$t('nodes.head.tooltip')"
                 >
                   <template #subtitle>
-                    {{ item.head }}
+                    {{ item.protocols.eth.head }}
                   </template>
                   <template #action>{{ $t('nodes.head.action1') }}</template>
                   <template #action2>
-                    {{ nf.format(item.TD) }}
+                    {{ nf.format(item.protocols.eth.difficulty) }}
                   </template>
                 </extended-list-item>
               </v-list>
@@ -128,14 +130,17 @@
       <template #[`item.id`]="{ item }">
         {{ formatHash(item.id, 10, 0) }}
       </template>
+      <template #[`item.network.remoteAddress`]="{ item }">
+        {{ formatIpAddress(item.network.remoteAddress) }}
+      </template>
       <template #[`item.protocols.eth.head`]="{ item }">
         {{ formatHash(item.protocols.eth.head, 10, 8) }}
       </template>
-      <template #[`item.release`]="{ item }">
-        {{ formatRelease(item.release) }}
+      <template #[`item.client.release`]="{ item }">
+        {{ formatRelease(item.client.release) }}
       </template>
-      <template #[`item.forkId.next`]="{ item }">
-        {{ nf.format(item.forkId.next) }}
+      <template #[`item.protocols.eth.forkId.next`]="{ item }">
+        {{ nf.format(item.protocols.eth.forkId.next) }}
       </template>
     </v-data-table>
   </v-card>
@@ -188,26 +193,30 @@ export default {
           text: this.$t('nodes.ipAddress.title'),
           align: 'start',
           sortable: false,
-          value: 'ip',
+          value: 'network.remoteAddress',
         },
         {
           text: this.$t('nodes.client.title'),
           align: 'start',
           sortable: true,
-          value: 'name',
+          value: 'client.name',
         },
-        { text: this.$t('nodes.version'), sortable: true, value: 'release' },
+        {
+          text: this.$t('nodes.version'),
+          sortable: true,
+          value: 'client.release',
+        },
         {
           text: this.$t('nodes.forkId.title'),
           align: 'start',
           sortable: true,
-          value: 'forkId.tag',
+          value: 'protocols.eth.forkId.tag',
         },
         {
           text: this.$t('nodes.nextFork'),
           align: 'start',
           sortable: true,
-          value: 'forkId.next',
+          value: 'protocols.eth.forkId.next',
         },
         {
           text: this.$t('nodes.head.title'),
@@ -230,7 +239,11 @@ export default {
     },
     formatRelease(version) {
       // clean up version/release to number/tag
-      return version.split('-')[0]
+      return version.split('-')[0].replace('v', '')
+    },
+    formatIpAddress(address) {
+      // remove port
+      return address.split(':')[0]
     },
   },
 }
