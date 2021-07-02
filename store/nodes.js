@@ -61,28 +61,28 @@ const parseNodes = function (nodes) {
   const nodesFiltered = []
   for (const node of nodes) {
     const name = node.name.split('/')
-    node.fullname = node.name
-    node.name = name[0]
-    node.release = name[1]
-    node.platform = name[2]
-    node.extra = name[3]
-    node.forkId = {
-      tag: getForkId(node.protocols.eth.forkId.current),
-      current: node.protocols.eth.forkId.hash,
-      next: node.protocols.eth.forkId.next,
+    node.client = {
+      name: name[0],
+      release: name[1],
+      platform: name[2],
+      extra: name[3],
     }
-    // if (node.networkID === 1) {
-    if (clients[node.name]) {
-      clients[node.name] = clients[node.name] + 1
+
+    if (clients[node.client.name]) {
+      clients[node.client.name] = clients[node.client.name] + 1
     } else {
-      clients[node.name] = 1
+      clients[node.client.name] = 1
     }
+
+    node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
+
     if (forkIds[node.protocols.eth.forkId.tag]) {
       forkIds[node.protocols.eth.forkId.tag] =
         forkIds[node.protocols.eth.forkId.tag] + 1
     } else {
       forkIds[node.protocols.eth.forkId.tag] = 1
     }
+
     if (protocols[node.protocols.eth.version]) {
       protocols[node.protocols.eth.version] =
         protocols[node.protocols.eth.version] + 1
@@ -90,7 +90,6 @@ const parseNodes = function (nodes) {
       protocols[node.protocols.eth.version] = 1
     }
     nodesFiltered.push(node)
-    // }
   }
   return { nodes: nodesFiltered, clients, forkIds, protocols }
 }
