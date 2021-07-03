@@ -1,19 +1,59 @@
 {
-  "title": "static",
-  "subtitle": "基于Git的CMS",
+  "title": "ETC 节点浏览器",
+  "subtitle": "以太坊经典主网节点浏览器。",
   "home": {
-    "title": "基于Git的CMS",
-    "desc": "静态是基于Git的CMS，用于引导开源项目的登录站点。 通过利用Vue.js，Nuxt.js和Vuetify，所有繁重的工作都可以为您完成-不需要任何编码技能。 只需专注于炫耀您的项目以及它所提供的一切。",
-    "github": "Github",
-    "getStarted": "开始使用"
+    "title": "ETC 节点浏览器",
+    "clients": "客户",
+    "totalNodes": "节点总数",
+    "forkIdCurrent": "ForkId（当前）",
+    "forkIdNext": "ForkId（下一个）",
+    "protocols": "协议版本"
   },
-  "toc": "内容",
-  "slug": {
-    "fallback": "没有可用的{0}版本。 退回到{1}。"
+  "nodes": {
+    "nodes": "节点",
+    "search": "搜索",
+    "overview": "概述",
+    "raw": "JSON",
+    "all": "全部",
+    "noData": "没有数据",
+    "loading": "正在加载..",
+    "noResults": "没结果",
+    "perPage": "每页节点数：",
+    "version": "版本",
+    "nextFork": "ForkId（下一个）",
+    "nodeId": {
+      "title": "节点 ID",
+      "tooltip": "此节点的唯一标识符"
+    },
+    "ipAddress": {
+      "title": "IP地址",
+      "tooltip": "该节点的IP地址"
+    },
+    "client": {
+      "title": "客户",
+      "tooltip": "此节点正在运行的客户端软件"
+    },
+    "enode": {
+      "title": "Enode",
+      "tooltip": "此节点 URL 方案（与 addPeer 一起使用）"
+    },
+    "protocols": {
+      "title": "协议",
+      "tooltip": "本节点支持的协议版本"
+    },
+    "forkId": {
+      "title": "ForkId（当前）",
+      "tooltip": "该节点上报的当前forkId",
+      "action1": "下一个叉块"
+    },
+    "head": {
+      "title": "头",
+      "tooltip": "这个节点负责区块哈希和总难度",
+      "action1": "总难度"
+    }
   },
-  "search": {
-    "title": "搜索",
-    "noResults": "没有搜索结果..."
-  },
-  "helpTranslate": "帮助翻译"
+  "helpTranslate": "帮助翻译",
+  "footer": {
+    "copyright": "由以太坊经典实验室构建。"
+  }
 }
