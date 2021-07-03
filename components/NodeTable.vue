@@ -29,7 +29,6 @@
       :loading-text="$t('nodes.loading')"
       :no-data-text="$t('nodes.noData')"
       :no-results-text="$t('nodes.noResults')"
-      :footer-props="footerProps"
     >
       <template #top="{ pagination, options, updateOptions }">
         <v-data-footer
@@ -206,6 +205,12 @@ export default {
           align: 'start',
           sortable: false,
           value: 'network.remoteAddress',
+        },
+        {
+          text: this.$t('nodes.country'),
+          align: 'start',
+          sortable: true,
+          value: 'ip_info.country_name',
         },
         {
           text: this.$t('nodes.client.title'),
