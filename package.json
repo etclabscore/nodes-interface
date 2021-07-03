@@ -19,7 +19,7 @@
     "consola": "^2.15.3",
     "core-js": "^3.11.2",
     "nuxt": "^2.15.7",
-    "nuxt-i18n": "^6.27.1",
+    "nuxt-i18n": "^6.27.2",
     "prism-themes": "^1.6.0",
     "vue-apexcharts": "^1.6.1",
     "vue-world-map-ms": "^0.1.4"
