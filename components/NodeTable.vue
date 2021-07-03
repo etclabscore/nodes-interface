@@ -35,9 +35,10 @@
         <v-data-footer
           :pagination="pagination"
           :options="options"
-          items-per-page-text="$vuetify.dataTable.itemsPerPageText"
           class="bb-1"
           @update:options="updateOptions"
+          :items-per-page-all-text="$t('nodes.all')"
+          :items-per-page-text="$t('nodes.perPage')"
         >
           <template v-if="!isMobile" #prepend>
             <v-breadcrumbs :items="breadcrumbs" />
@@ -186,11 +187,14 @@ export default {
       expanded: [],
       tab: null,
       nf: new Intl.NumberFormat(this.locale, {}),
-      footerProps: {
-        '#items-per-page-all-text': this.$t('nodes.all'),
-        'items-per-page-text': this.$t('nodes.perPage'),
-      },
-      chartHeaders: [
+    }
+  },
+  computed: {
+    isMobile() {
+      return this.$store.state.mobile
+    },
+    chartHeaders() {
+      return [
         {
           text: this.$t('nodes.nodeId.title'),
           align: 'start',
@@ -232,12 +236,7 @@ export default {
           sortable: true,
           value: 'protocols.eth.head',
         },
-      ],
-    }
-  },
-  computed: {
-    isMobile() {
-      return this.$store.state.mobile
+      ]
     },
   },
   methods: {

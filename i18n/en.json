@@ -15,6 +15,10 @@
     "overview": "Overview",
     "raw": "Raw",
     "all": "All",
+    "noData": "No data",
+    "loading": "Loading..",
+    "noResults": "No Results",
+    "perPage": "Nodes per page:",
     "version": "Version",
     "nextFork": "Fork ID (Next)",
     "nodeId": {
