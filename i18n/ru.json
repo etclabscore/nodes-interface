@@ -53,6 +53,9 @@
       "action1": "Общая сложность"
     }
   },
+  "map": {
+    "nodes": "узел {count} | {count} узлов"
+  },
   "helpTranslate": "Помогите перевести",
   "footer": {
     "copyright": "Создан Ethereum Classic Labs."

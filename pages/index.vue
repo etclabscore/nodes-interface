@@ -13,16 +13,32 @@
           >
         </v-toolbar>
         <v-card tile class="mr-1 mb-1 mt-1" style="margin-left: 6px">
+          <v-sheet
+            v-if="showMapOverlay"
+            hide-overlay
+            persistent
+            width="180"
+            style="position: absolute; bottom: 0"
+            class="bg-0"
+          >
+            <v-card tile class="bg-0">
+              <v-card-text color="primary"
+                >{{ mapOverlayCountry }}
+                {{ $tc('map.nodes', mapOverlayCount) }}</v-card-text
+              >
+            </v-card>
+          </v-sheet>
           <world-map
-            low-color="#00ccff"
-            high-color="rgba(0,227,150,1)"
+            low-color="#b1efff"
+            high-color="#14d0ff"
             :country-data="countryData"
             default-country-fill-color="#5a5a5a"
             :country-colors="false"
             :show-color-bar="true"
+            :show-overlay="showMapOverlay"
             country-stroke-color="#222"
-            @mouseleave="on_mouseleave"
-            @mouseenter="on_mouseenter"
+            @mouseenter="onMouseEnterMapCountry"
+            @mouseleave="onMouseLeaveMapCountry"
           />
         </v-card>
         <table-chart-card
@@ -92,6 +108,9 @@ export default {
   },
   data() {
     return {
+      showMapOverlay: false,
+      mapOverlayCountry: '',
+      mapOverlayCount: 0,
       breadcrumbs: [
         {
           text: 'ETC Mainnet',
@@ -124,6 +143,20 @@ export default {
     },
     countryData() {
       return this.$store.state.nodes.countries
+    },
+  },
+  methods: {
+    onMouseEnterMapCountry(countryCode) {
+      if (this.countryData[countryCode]) {
+        this.mapOverlayCountry = countryCode + ': '
+        this.mapOverlayCount = this.countryData[countryCode]
+        this.showMapOverlay = true
+      }
+    },
+    onMouseLeaveMapCountry() {
+      this.showMapOverlay = false
+      this.mapOverlayCountry = ''
+      this.mapOverlayCount = 0
     },
   },
 }

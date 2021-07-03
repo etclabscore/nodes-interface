@@ -53,6 +53,9 @@
       "action1": "总难度"
     }
   },
+  "map": {
+    "nodes": "{count} 个节点 | {count} 个节点"
+  },
   "helpTranslate": "帮助翻译",
   "footer": {
     "copyright": "由以太坊经典实验室构建。"

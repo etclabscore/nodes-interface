@@ -53,6 +53,9 @@
       "action1": "Total Difficulty"
     }
   },
+  "map": {
+    "nodes": "{count} node | {count} nodes"
+  },
   "helpTranslate": "Help Translate",
   "footer": {
     "copyright": "Built by Ethereum Classic Labs."
