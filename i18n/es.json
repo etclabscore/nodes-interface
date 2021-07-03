@@ -1,19 +1,59 @@
 {
-  "title": "static",
-  "subtitle": "CMS basado en Git",
+  "title": "Explorador de nodos ETC",
+  "subtitle": "Explorador de nodos de la red principal Ethereum Classic.",
   "home": {
-    "title": "CMS basado en Git",
-    "desc": "Static es un CMS basado en Git para iniciar sitios de aterrizaje para proyectos de código abierto. Al utilizar Vue.js, Nuxt.js y Vuetify, todo el trabajo pesado está hecho por usted, no se requieren habilidades de codificación. Solo concéntrese en mostrar su proyecto y todo lo que tiene para ofrecer.",
-    "github": "Github",
-    "getStarted": "Empezar"
+    "title": "Explorador de nodos ETC",
+    "clients": "Software",
+    "totalNodes": "Nodos totales",
+    "forkIdCurrent": "ForkId (actual)",
+    "forkIdNext": "ForkId (siguiente)",
+    "protocols": "Versiones de protocolo"
   },
-  "toc": "Contenido",
-  "slug": {
-    "fallback": "No hay {0} versión disponible. Volviendo a {1}."
+  "nodes": {
+    "nodes": "Nodos",
+    "search": "Buscar",
+    "overview": "Descripción general",
+    "raw": "JSON",
+    "all": "Todas",
+    "noData": "Sin datos",
+    "loading": "Cargando..",
+    "noResults": "No hay resultados",
+    "perPage": "Nodos por página:",
+    "version": "Versión",
+    "nextFork": "ForkId (siguiente)",
+    "nodeId": {
+      "title": "ID de nodo",
+      "tooltip": "Identificador único de este nodo"
+    },
+    "ipAddress": {
+      "title": "Dirección IP",
+      "tooltip": "La dirección IP de este nodo"
+    },
+    "client": {
+      "title": "Software",
+      "tooltip": "El software que ejecuta este nodo"
+    },
+    "enode": {
+      "title": "Enode",
+      "tooltip": "Este esquema de URL de nodos (usado con addPeer)"
+    },
+    "protocols": {
+      "title": "Protocols",
+      "tooltip": "Versiones de protocolo admitidas por este nodo"
+    },
+    "forkId": {
+      "title": "ForkId (actual)",
+      "tooltip": "El forkId actual informado por este nodo",
+      "action1": "Siguiente bloque de horquilla"
+    },
+    "head": {
+      "title": "Cabeza",
+      "tooltip": "Esta cabeza de los nodos blockhash y dificultad total",
+      "action1": "Dificultad total"
+    }
   },
-  "search": {
-    "title": "Buscar",
-    "noResults": "No hay resultados de búsqueda..."
-  },
-  "helpTranslate": "Ayuda a traducir"
+  "helpTranslate": "Ayuda a traducir",
+  "footer": {
+    "copyright": "Construido por Ethereum Classic Labs."
+  }
 }
