@@ -5,6 +5,7 @@ export const state = () => ({
   raw: [], // full list of nodes (all data) (used by nodes page)
   clients: {}, // data for clients table (used by home page)
   forks: {}, // data for forkIds table (used by home page)
+  countries: {}, // country data for heat map
   updated: false,
 })
 
@@ -47,6 +48,9 @@ export const mutations = {
     }
     state.updated = true
   },
+  SET_COUNTRIES(state, countries) {
+    state.countries = countries
+  },
 }
 
 export const actions = {
@@ -57,11 +61,12 @@ export const actions = {
         'https://peers.etccore.in/v2/admin_peers.result.json'
       )
 
-      const { nodes, clients, forks, protocols } = parseNodes(data)
+      const { nodes, clients, forks, protocols, countries } = parseNodes(data)
       commit('SET_NODES', nodes)
       commit('SET_CLIENTS', clients)
       commit('SET_FORKIDS', forks)
       commit('SET_PROTOCOLS', protocols)
+      commit('SET_COUNTRIES', countries)
     }
   },
 }
@@ -73,6 +78,7 @@ const parseNodes = function (nodes) {
     next: {},
   }
   const protocols = {}
+  const countries = {}
   const nodesFiltered = []
 
   for (const node of nodes) {
@@ -117,10 +123,16 @@ const parseNodes = function (nodes) {
       } else {
         protocols[node.protocols.eth.version] = 1
       }
+
+      if (countries[node.ip_info.country]) {
+        countries[node.ip_info.country] = countries[node.ip_info.country] + 1
+      } else {
+        countries[node.ip_info.country] = 1
+      }
       nodesFiltered.push(node)
     }
   }
-  return { nodes: nodesFiltered, clients, forks, protocols }
+  return { nodes: nodesFiltered, clients, forks, protocols, countries }
 }
 
 const getForkId = function (hash) {

@@ -12,6 +12,19 @@
             ><v-icon>mdi-close</v-icon></v-btn
           >
         </v-toolbar>
+        <v-card tile class="mr-1 mb-1 mt-1" style="margin-left: 6px">
+          <world-map
+            low-color="#00ccff"
+            high-color="rgba(0,227,150,1)"
+            :country-data="countryData"
+            default-country-fill-color="#5a5a5a"
+            :country-colors="false"
+            :show-color-bar="true"
+            country-stroke-color="#222"
+            @mouseleave="on_mouseleave"
+            @mouseenter="on_mouseenter"
+          />
+        </v-card>
         <table-chart-card
           :title="$t('home.clients')"
           :table="nodes.clients.table"
@@ -19,7 +32,7 @@
           :series="nodes.clients.chart.series"
           :total="totalNodes"
           icon="mdi-console"
-          class="mr-1 mb-1 mt-1"
+          class="mr-1 mb-1"
           style="margin-left: 6px"
         />
         <table-chart-card
@@ -64,6 +77,7 @@
 </template>
 
 <script>
+import WorldMap from 'vue-world-map-ms'
 import NodeTable from '~/components/NodeTable.vue'
 import TableChartCard from '~/components/TableChartCard.vue'
 import ResizableDrawer from '~/components/app/ResizableDrawer.vue'
@@ -74,6 +88,7 @@ export default {
     NodeTable,
     TableChartCard,
     ResizableDrawer,
+    WorldMap,
   },
   data() {
     return {
@@ -106,6 +121,9 @@ export default {
     },
     darkmode() {
       return this.$vuetify.theme.dark
+    },
+    countryData() {
+      return this.$store.state.nodes.countries
     },
   },
 }

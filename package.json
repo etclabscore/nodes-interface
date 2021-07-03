@@ -21,7 +21,8 @@
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.1",
     "prism-themes": "^1.6.0",
-    "vue-apexcharts": "^1.6.1"
+    "vue-apexcharts": "^1.6.1",
+    "vue-world-map-ms": "^0.1.4"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.0",
