@@ -1,7 +1,7 @@
 <template>
   <v-card tile>
     <div class="d-flex flex-no-wrap justify-space-between">
-      <div style="width: 100%">
+      <div style="width: 100%; max-width: 320px">
         <v-card-title>
           <v-icon class="mr-1">{{ icon }}</v-icon>
           {{ title }}

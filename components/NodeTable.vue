@@ -36,9 +36,9 @@
           :pagination="pagination"
           :options="options"
           class="bb-1"
-          @update:options="updateOptions"
           :items-per-page-all-text="$t('nodes.all')"
           :items-per-page-text="$t('nodes.perPage')"
+          @update:options="updateOptions"
         >
           <template v-if="!isMobile" #prepend>
             <v-breadcrumbs :items="breadcrumbs" />
