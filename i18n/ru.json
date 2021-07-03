@@ -19,6 +19,7 @@
     "loading": "Загружается ..",
     "noResults": "Нет результатов",
     "perPage": "Узлов на странице:",
+    "country": "Страна",
     "version": "Версия",
     "nextFork": "ForkId (Далее)",
     "nodeId": {

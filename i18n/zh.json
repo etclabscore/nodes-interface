@@ -19,6 +19,7 @@
     "loading": "正在加载..",
     "noResults": "没结果",
     "perPage": "每页节点数：",
+    "country": "国家",
     "version": "版本",
     "nextFork": "ForkId（下一个）",
     "nodeId": {

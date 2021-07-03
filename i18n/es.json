@@ -19,6 +19,7 @@
     "loading": "Cargando..",
     "noResults": "No hay resultados",
     "perPage": "Nodos por página:",
+    "country": "País",
     "version": "Versión",
     "nextFork": "ForkId (siguiente)",
     "nodeId": {
