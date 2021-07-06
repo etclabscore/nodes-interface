@@ -24,6 +24,7 @@
     "protocolEth": "Protocol (eth)",
     "protocolSnap": "Protocol (snap)",
     "nextFork": "Fork ID (Next)",
+    "uptime": "Uptime",
     "nodeId": {
       "title": "Node ID",
       "tooltip": "Unique identifier of this node"
