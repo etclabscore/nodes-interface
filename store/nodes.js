@@ -6,6 +6,10 @@ export const state = () => ({
   clients: {}, // data for clients table (used by home page)
   forks: {}, // data for forkIds table (used by home page)
   countries: {}, // country data for heat map
+  protocols: {
+    eth: {},
+    snap: {},
+  },
   updated: false,
 })
 
@@ -40,10 +44,19 @@ export const mutations = {
   },
   SET_PROTOCOLS(state, protocols) {
     state.protocols = {
-      table: protocols,
-      chart: {
-        series: Object.values(protocols),
-        labels: Object.keys(protocols),
+      eth: {
+        table: protocols.eth,
+        chart: {
+          series: Object.values(protocols.eth),
+          labels: Object.keys(protocols.eth),
+        },
+      },
+      snap: {
+        table: protocols.snap,
+        chart: {
+          series: Object.values(protocols.snap),
+          labels: Object.keys(protocols.snap),
+        },
       },
     }
     state.updated = true
@@ -77,7 +90,10 @@ const parseNodes = function (nodes) {
     current: {},
     next: {},
   }
-  const protocols = {}
+  const protocols = {
+    eth: {},
+    snap: {},
+  }
   const countries = {}
   const nodesFiltered = []
 
@@ -92,43 +108,41 @@ const parseNodes = function (nodes) {
         extra: name[3],
       }
 
-      if (clients[node.client.name]) {
-        clients[node.client.name] = clients[node.client.name] + 1
-      } else {
-        clients[node.client.name] = 1
-      }
+      clients[node.client.name] = clients[node.client.name]
+        ? clients[node.client.name] + 1
+        : 1
 
       node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
       node.protocols.eth.forkId.nextTag = getForkBlock(
         node.protocols.eth.forkId.next
       )
 
-      if (forks.current[node.protocols.eth.forkId.tag]) {
-        forks.current[node.protocols.eth.forkId.tag] =
-          forks.current[node.protocols.eth.forkId.tag] + 1
+      forks.current[node.protocols.eth.forkId.tag] = forks.current[
+        node.protocols.eth.forkId.tag
+      ]
+        ? forks.current[node.protocols.eth.forkId.tag] + 1
+        : 1
+
+      forks.next[node.protocols.eth.forkId.nextTag] = forks.next[
+        node.protocols.eth.forkId.nextTag
+      ]
+        ? forks.next[node.protocols.eth.forkId.nextTag] + 1
+        : 1
+
+      const e = 'v' + node.protocols.eth.version
+      protocols.eth[e] = protocols.eth[e] ? protocols.eth[e] + 1 : 1
+
+      if (node.protocols.snap) {
+        const s = 'v' + node.protocols.snap.version
+        protocols.snap[s] = protocols.snap[s] ? protocols.snap[s] + 1 : 1
       } else {
-        forks.current[node.protocols.eth.forkId.tag] = 1
+        protocols.snap['-'] = protocols.snap['-'] ? protocols.snap['-'] + 1 : 1
       }
 
-      if (forks.next[node.protocols.eth.forkId.nextTag]) {
-        forks.next[node.protocols.eth.forkId.nextTag] =
-          forks.next[node.protocols.eth.forkId.nextTag] + 1
-      } else {
-        forks.next[node.protocols.eth.forkId.nextTag] = 1
-      }
+      countries[node.ip_info.country] = countries[node.ip_info.country]
+        ? countries[node.ip_info.country] + 1
+        : 1
 
-      if (protocols[node.protocols.eth.version]) {
-        protocols[node.protocols.eth.version] =
-          protocols[node.protocols.eth.version] + 1
-      } else {
-        protocols[node.protocols.eth.version] = 1
-      }
-
-      if (countries[node.ip_info.country]) {
-        countries[node.ip_info.country] = countries[node.ip_info.country] + 1
-      } else {
-        countries[node.ip_info.country] = 1
-      }
       nodesFiltered.push(node)
     }
   }
