@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 // Libraries
 import Vue from 'vue'
 import Vuetify from 'vuetify'
