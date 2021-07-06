@@ -147,6 +147,12 @@
       <template #[`item.client.release`]="{ item }">
         {{ formatRelease(item.client.release) }}
       </template>
+      <template #[`item.protocols.eth.version`]="{ item }">
+        {{ item.protocols.eth ? 'v' + item.protocols.eth.version : '-' }}
+      </template>
+      <template #[`item.protocols.snap.version`]="{ item }">
+        {{ item.protocols.snap ? 'v' + item.protocols.snap.version : '-' }}
+      </template>
       <template #[`item.protocols.eth.forkId.next`]="{ item }">
         {{ nf.format(item.protocols.eth.forkId.next) }}
       </template>
@@ -224,6 +230,18 @@ export default {
           value: 'client.release',
         },
         {
+          text: this.$t('nodes.protocolEth'),
+          sortable: true,
+          align: 'center',
+          value: 'protocols.eth.version',
+        },
+        {
+          text: this.$t('nodes.protocolSnap'),
+          align: 'center',
+          sortable: true,
+          value: 'protocols.snap.version',
+        },
+        {
           text: this.$t('nodes.forkId.title'),
           align: 'start',
           sortable: true,
@@ -234,12 +252,6 @@ export default {
           align: 'start',
           sortable: true,
           value: 'protocols.eth.forkId.nextTag',
-        },
-        {
-          text: this.$t('nodes.head.title'),
-          align: 'start',
-          sortable: true,
-          value: 'protocols.eth.head',
         },
       ]
     },

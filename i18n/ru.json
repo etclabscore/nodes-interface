@@ -21,6 +21,8 @@
     "perPage": "Узлов на странице:",
     "country": "Страна",
     "version": "Версия",
+    "protocolEth": "Протокол (eth)",
+    "protocolSnap": "Протокол (snap)",
     "nextFork": "ForkId (Далее)",
     "nodeId": {
       "title": "ID узла",

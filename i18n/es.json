@@ -21,6 +21,8 @@
     "perPage": "Nodos por página:",
     "country": "País",
     "version": "Versión",
+    "protocolEth": "Protocolo (eth)",
+    "protocolSnap": "Protocolo (snap)",
     "nextFork": "ForkId (siguiente)",
     "nodeId": {
       "title": "ID de nodo",

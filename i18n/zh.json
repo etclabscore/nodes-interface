@@ -21,6 +21,8 @@
     "perPage": "每页节点数：",
     "country": "国家",
     "version": "版本",
+    "protocolEth": "协议 （eth）",
+    "protocolSnap": "协议 （snap）",
     "nextFork": "ForkId（下一个）",
     "nodeId": {
       "title": "节点 ID",

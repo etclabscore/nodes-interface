@@ -72,10 +72,20 @@
           style="margin-left: 6px"
         />
         <table-chart-card
-          :title="$t('home.protocols')"
-          :table="nodes.protocols.table"
-          :labels="nodes.protocols.chart.labels"
-          :series="nodes.protocols.chart.series"
+          :title="$t('nodes.protocolEth')"
+          :table="nodes.protocols.eth.table"
+          :labels="nodes.protocols.eth.chart.labels"
+          :series="nodes.protocols.eth.chart.series"
+          :total="totalNodes"
+          icon="mdi-handshake"
+          class="mr-1 mb-1"
+          style="margin-left: 6px"
+        />
+        <table-chart-card
+          :title="$t('nodes.protocolSnap')"
+          :table="nodes.protocols.snap.table"
+          :labels="nodes.protocols.snap.chart.labels"
+          :series="nodes.protocols.snap.chart.series"
           :total="totalNodes"
           icon="mdi-handshake"
           class="mr-1 mb-1"
