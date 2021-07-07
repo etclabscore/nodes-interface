@@ -157,11 +157,16 @@
       <template #[`item.protocols.eth.forkId.next`]="{ item }">
         {{ nf.format(item.protocols.eth.forkId.next) }}
       </template>
+      <template #[`item.contact.first.unix`]="{ item }">
+        {{ formatUptime(item.contact) }}
+      </template>
     </v-data-table>
   </v-card>
 </template>
 
 <script>
+import { formatDistance } from 'date-fns'
+import { enUS, es, ru, zhCN } from 'date-fns/locale'
 import ExtendedListItem from '~/components/ListItem.vue'
 
 export default {
@@ -193,11 +198,20 @@ export default {
       expanded: [],
       tab: null,
       nf: new Intl.NumberFormat(this.locale, {}),
+      locales: {
+        en: enUS,
+        es,
+        ru,
+        zh: zhCN,
+      },
     }
   },
   computed: {
     isMobile() {
       return this.$store.state.mobile
+    },
+    locale() {
+      return this.$i18n.locale
     },
     chartHeaders() {
       return [
@@ -254,6 +268,12 @@ export default {
           sortable: true,
           value: 'protocols.eth.forkId.nextTag',
         },
+        {
+          text: this.$t('nodes.uptime'),
+          align: 'start',
+          sortable: true,
+          value: 'contact.first.unix',
+        },
       ]
     },
   },
@@ -269,6 +289,16 @@ export default {
     formatIpAddress(address) {
       // remove port
       return address.split(':')[0]
+    },
+    formatUptime(contact) {
+      return formatDistance(
+        new Date(contact.first.unix * 1000),
+        new Date(contact.last.unix * 1000),
+        {
+          addSuffix: false,
+          locale: this.locales[this.locale],
+        }
+      )
     },
   },
 }

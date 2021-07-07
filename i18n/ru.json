@@ -24,6 +24,7 @@
     "protocolEth": "Протокол (eth)",
     "protocolSnap": "Протокол (snap)",
     "nextFork": "ForkId (Далее)",
+    "uptime": "Время безотказной работы",
     "nodeId": {
       "title": "ID узла",
       "tooltip": "Уникальный идентификатор этого узла"

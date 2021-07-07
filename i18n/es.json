@@ -24,6 +24,7 @@
     "protocolEth": "Protocolo (eth)",
     "protocolSnap": "Protocolo (snap)",
     "nextFork": "ForkId (siguiente)",
+    "uptime": "Tiempo de actividad",
     "nodeId": {
       "title": "ID de nodo",
       "tooltip": "Identificador único de este nodo"
