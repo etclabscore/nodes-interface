@@ -99,35 +99,38 @@ const parseNodes = function (nodes) {
 
   for (const node of nodes) {
     // filter out any nodes that didnt get past handshake.
-    if (node.protocols.eth !== 'handshake') {
+    if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
       const name = node.name.split('/')
       node.client = {
-        name: name[0],
-        release: name[1],
-        platform: name[2],
-        extra: name[3],
+        name: name[0] ? name[0] : 'unknown',
+        release: name[1] ? name[1] : 'unknown',
+        platform: name[2] ? name[2] : 'unknown',
+        extra: name[3] ? name[3] : '',
       }
 
       clients[node.client.name] = clients[node.client.name]
         ? clients[node.client.name] + 1
         : 1
 
-      node.protocols.eth.forkId.tag = getForkId(node.protocols.eth.forkId.hash)
-      node.protocols.eth.forkId.nextTag = getForkBlock(
-        node.protocols.eth.forkId.next
-      )
+      if (node.protocols.eth.forkId) {
+        node.protocols.eth.forkId.tag = getForkId(
+          node.protocols.eth.forkId.hash
+        )
+        node.protocols.eth.forkId.nextTag = getForkBlock(
+          node.protocols.eth.forkId.next
+        )
+        forks.current[node.protocols.eth.forkId.tag] = forks.current[
+          node.protocols.eth.forkId.tag
+        ]
+          ? forks.current[node.protocols.eth.forkId.tag] + 1
+          : 1
 
-      forks.current[node.protocols.eth.forkId.tag] = forks.current[
-        node.protocols.eth.forkId.tag
-      ]
-        ? forks.current[node.protocols.eth.forkId.tag] + 1
-        : 1
-
-      forks.next[node.protocols.eth.forkId.nextTag] = forks.next[
-        node.protocols.eth.forkId.nextTag
-      ]
-        ? forks.next[node.protocols.eth.forkId.nextTag] + 1
-        : 1
+        forks.next[node.protocols.eth.forkId.nextTag] = forks.next[
+          node.protocols.eth.forkId.nextTag
+        ]
+          ? forks.next[node.protocols.eth.forkId.nextTag] + 1
+          : 1
+      }
 
       const e = 'v' + node.protocols.eth.version
       protocols.eth[e] = protocols.eth[e] ? protocols.eth[e] + 1 : 1

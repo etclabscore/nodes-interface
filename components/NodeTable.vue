@@ -100,6 +100,7 @@
                   </template>
                 </extended-list-item>
                 <extended-list-item
+                  v-if="item.protocols.eth.forkId"
                   :title="$t('nodes.forkId.title')"
                   :tooltip="$t('nodes.forkId.tooltip')"
                 >
