@@ -11,6 +11,7 @@
   },
   "nodes": {
     "nodes": "节点",
+    "network": "ETC主网",
     "search": "搜索",
     "overview": "概述",
     "raw": "JSON",

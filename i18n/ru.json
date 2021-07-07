@@ -11,6 +11,7 @@
   },
   "nodes": {
     "nodes": "Узлы",
+    "network": "ETC Mainnet",
     "search": "Поиск",
     "overview": "Обзор",
     "raw": "JSON",

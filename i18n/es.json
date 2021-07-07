@@ -11,6 +11,7 @@
   },
   "nodes": {
     "nodes": "Nodos",
+    "network": "ETC Mainnet",
     "search": "Buscar",
     "overview": "Descripción general",
     "raw": "JSON",

@@ -121,18 +121,6 @@ export default {
       showMapOverlay: false,
       mapOverlayCountry: '',
       mapOverlayCount: 0,
-      breadcrumbs: [
-        {
-          text: 'ETC Mainnet',
-          disabled: true,
-          to: '/',
-        },
-        {
-          text: 'Nodes',
-          disabled: true,
-          to: '/',
-        },
-      ],
     }
   },
   async fetch() {
@@ -153,6 +141,15 @@ export default {
     },
     countryData() {
       return this.$store.state.nodes.countries
+    },
+    breadcrumbs() {
+      return [
+        {
+          text: this.$t('nodes.network'),
+          disabled: true,
+          to: '/',
+        },
+      ]
     },
   },
   methods: {
