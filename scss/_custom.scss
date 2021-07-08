@@ -34,12 +34,25 @@ a {
   padding: 5px !important;
 }
 
+// tablechartcard
+
+.w-100 {
+  width : 100%;
+}
+
+.mw-320 {
+  max-width: 320px !important;
+}
+
+.v-tabs-items {
+  background:rgba(0, 0, 0, 0) !important;
+}
 // background 0- transparant
 .bg-0 {
   background-color: rgba(0,0,0,0) !important;
 }
 
-// no text tranform
+// no text transform
 .no-tt {
   text-transform: none !important;
 }

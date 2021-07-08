@@ -48,13 +48,13 @@ export default {
     ResizableDrawer,
     Overview,
   },
-  async fetch() {
-    await this.$store.dispatch('nodes/set_nodes')
-  },
   data() {
     return {
       tab: null,
     }
+  },
+  async fetch() {
+    await this.$store.dispatch('nodes/set_nodes')
   },
   computed: {
     nodes() {
