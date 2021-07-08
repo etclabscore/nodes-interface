@@ -26,6 +26,9 @@
     "protocolSnap": "Protocolo (snap)",
     "nextFork": "ForkId (siguiente)",
     "uptime": "Tiempo de actividad",
+    "none": "Ninguno",
+    "disabled": "Incapacitado",
+    "unknown": "Incógnito",
     "nodeId": {
       "title": "ID de nodo",
       "tooltip": "Identificador único de este nodo"

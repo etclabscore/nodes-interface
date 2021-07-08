@@ -139,6 +139,9 @@
       <template #[`item.id`]="{ item }">
         {{ formatHash(item.id, 10, 0) }}
       </template>
+      <template #[`item.client.name`]="{ item }">
+        {{ item.client.name === '-' ? $t('nodes.unknown') : item.client.name }}
+      </template>
       <template #[`item.network.remoteAddress`]="{ item }">
         {{ formatIpAddress(item.network.remoteAddress) }}
       </template>
@@ -220,12 +223,6 @@ export default {
           align: 'start',
           sortable: false,
           value: 'id',
-        },
-        {
-          text: this.$t('nodes.ipAddress.title'),
-          align: 'start',
-          sortable: false,
-          value: 'network.remoteAddress',
         },
         {
           text: this.$t('nodes.country'),

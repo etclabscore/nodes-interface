@@ -102,9 +102,9 @@ const parseNodes = function (nodes) {
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
       const name = node.name.split('/')
       node.client = {
-        name: name[0] ? name[0] : 'unknown',
-        release: name[1] ? name[1] : 'unknown',
-        platform: name[2] ? name[2] : 'unknown',
+        name: name[0] ? name[0] : '-',
+        release: name[1] ? name[1] : '-',
+        platform: name[2] ? name[2] : '-',
         extra: name[3] ? name[3] : '',
       }
 

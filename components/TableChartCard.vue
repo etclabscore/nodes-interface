@@ -17,7 +17,9 @@
             <tbody>
               <tr v-for="(count, name) of table" :key="name">
                 <template v-if="!to">
-                  <td class="text-left">{{ name }}</td>
+                  <td class="text-left">
+                    {{ name === '-' ? noLabelText : name }}
+                  </td>
                 </template>
                 <template v-else>
                   <td class="text-left">
@@ -88,10 +90,26 @@ export default {
         return null
       },
     },
+    noLabelText: {
+      type: String,
+      default() {
+        return '-'
+      },
+    },
   },
-  data() {
-    return {
-      options: {
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? 'dark' : 'light'
+    },
+    isMobile() {
+      return this.$store.state.mobile
+    },
+    locale() {
+      return this.$i18n.locale
+    },
+    options() {
+      const self = this
+      return {
         chart: {
           id: this.title.toLowerCase() + '-chart',
           width: '100%',
@@ -106,25 +124,17 @@ export default {
         },
         dataLabels: {
           formatter(val, opts) {
-            const name = opts.w.globals.labels[opts.seriesIndex]
+            let name = opts.w.globals.labels[opts.seriesIndex]
+            if (name === '-') {
+              name = self.noLabelText
+            }
             return [name, val.toFixed(1) + '%']
           },
         },
         legend: {
           show: false,
         },
-      },
-    }
-  },
-  computed: {
-    theme() {
-      return this.$vuetify.theme.dark ? 'dark' : 'light'
-    },
-    isMobile() {
-      return this.$store.state.mobile
-    },
-    locale() {
-      return this.$i18n.locale
+      }
     },
   },
   methods: {
