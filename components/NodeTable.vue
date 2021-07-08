@@ -255,19 +255,19 @@ export default {
         },
         {
           text: this.$t('nodes.forkId.title'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'protocols.eth.forkId.tag',
         },
         {
           text: this.$t('nodes.nextFork'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'protocols.eth.forkId.nextTag',
         },
         {
           text: this.$t('nodes.uptime'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'contact.first.unix',
         },
