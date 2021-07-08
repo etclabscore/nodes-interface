@@ -114,7 +114,7 @@ export default {
   },
   computed: {
     totalNodes() {
-      return this.$store.state.nodes.raw.length
+      return this.nodes.raw.length
     },
   },
   methods: {
