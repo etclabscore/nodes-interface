@@ -1,7 +1,7 @@
 <template>
   <v-card tile>
     <div class="d-flex flex-no-wrap justify-space-between">
-      <div style="width: 100%; max-width: 320px">
+      <div :class="{ 'w-100': isMobile, 'mw-320': !isMobile }">
         <v-card-title>
           <v-icon class="mr-1">{{ icon }}</v-icon>
           {{ title }}

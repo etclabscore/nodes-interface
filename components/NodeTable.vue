@@ -1,18 +1,25 @@
 <template>
   <v-card tile>
     <v-card-title>
-      <v-icon class="mr-2">mdi-server-network</v-icon>
-      {{ title }}
+      <template v-if="!isMobile">
+        <v-icon class="mr-2">mdi-server-network</v-icon>
+        {{ title }}
+      </template>
       <v-spacer />
       <v-text-field
         v-model="search"
-        class="pt-0"
+        :class="{ 'pt-0': true, 'w-100': isMobile }"
         append-icon="mdi-magnify"
         :label="$t('nodes.search')"
         single-line
         hide-details
       ></v-text-field>
-      <v-btn icon class="ml-2" @click="$store.dispatch('drawers/toggleCharts')">
+      <v-btn
+        v-if="!isMobile"
+        icon
+        class="ml-2"
+        @click="$store.dispatch('drawers/toggleCharts')"
+      >
         <v-icon>mdi-chart-pie</v-icon>
       </v-btn>
     </v-card-title>
@@ -29,8 +36,9 @@
       :loading-text="$t('nodes.loading')"
       :no-data-text="$t('nodes.noData')"
       :no-results-text="$t('nodes.noResults')"
+      :disable-pagination="isMobile"
     >
-      <template #top="{ pagination, options, updateOptions }">
+      <template v-if="!isMobile" #top="{ pagination, options, updateOptions }">
         <v-data-footer
           :pagination="pagination"
           :options="options"
@@ -255,19 +263,19 @@ export default {
         },
         {
           text: this.$t('nodes.forkId.title'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'protocols.eth.forkId.tag',
         },
         {
           text: this.$t('nodes.nextFork'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'protocols.eth.forkId.nextTag',
         },
         {
           text: this.$t('nodes.uptime'),
-          align: 'start',
+          align: 'center',
           sortable: true,
           value: 'contact.first.unix',
         },
