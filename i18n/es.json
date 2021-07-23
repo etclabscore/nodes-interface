@@ -26,6 +26,7 @@
     "protocolSnap": "Protocolo (snap)",
     "nextFork": "ForkId (siguiente)",
     "uptime": "Tiempo de actividad",
+    "lastseen": "Ultima vez visto",
     "none": "Ninguno",
     "disabled": "Incapacitado",
     "unknown": "Incógnito",

@@ -26,6 +26,7 @@
     "protocolSnap": "Protocol (snap)",
     "nextFork": "Fork ID (Next)",
     "uptime": "Uptime",
+    "lastseen": "Last Seen",
     "none": "None",
     "disabled": "Disabled",
     "unknown": "Unknown",

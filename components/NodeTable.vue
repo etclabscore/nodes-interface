@@ -171,6 +171,9 @@
       <template #[`item.contact.first.unix`]="{ item }">
         {{ formatUptime(item.contact) }}
       </template>
+      <template #[`item.contact.last.unix`]="{ item }">
+        {{ formatLastSeen(item.contact) }}
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -279,6 +282,12 @@ export default {
           sortable: true,
           value: 'contact.first.unix',
         },
+        {
+          text: this.$t('nodes.lastseen'),
+          align: 'center',
+          sortable: true,
+          value: 'contact.last.unix',
+        },
       ]
     },
   },
@@ -304,6 +313,12 @@ export default {
           locale: this.locales[this.locale],
         }
       )
+    },
+    formatLastSeen(contact) {
+      return formatDistance(new Date(contact.last.unix * 1000), Date.now(), {
+        addSuffix: true,
+        locale: this.locales[this.locale],
+      })
     },
   },
 }

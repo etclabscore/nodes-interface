@@ -26,6 +26,7 @@
     "protocolSnap": "协议 （snap）",
     "nextFork": "ForkId（下一个）",
     "uptime": "正常运行时间",
+    "lastseen": "最后一次露面",
     "none": "没有任何",
     "disabled": "已禁用",
     "unknown": "未知",
