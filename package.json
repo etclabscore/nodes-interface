@@ -22,7 +22,7 @@
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.3",
     "prism-themes": "^1.6.0",
-    "vue-apexcharts": "^1.6.1",
+    "vue-apexcharts": "^1.6.2",
     "vue-world-map-ms": "^0.1.4"
   },
   "devDependencies": {
