@@ -1,11 +1,11 @@
-import config from './params/config.json'
+import config from './params/config.json';
 
-const msgs = {}
+const msgs = {};
 for (const l of config.i18n.locales) {
-  msgs[l.code] = require('./i18n/' + l.code + '.json')
+  msgs[l.code] = require('./i18n/' + l.code + '.json');
 }
 
-const locale = require('./i18n/' + config.i18n.default + '.json')
+const locale = require('./i18n/' + config.i18n.default + '.json');
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -123,11 +123,11 @@ export default {
   // hooks
   hooks: {
     'content:file:beforeParse': (file) => {
-      if (file.extension !== '.md') return
-      let dir = config.github.split('/')
-      dir = dir[dir.length - 1]
-      file.data = file.data.replace(/STATIC_GITHUB/g, config.github + '.git')
-      file.data = file.data.replace(/STATIC_DIR/g, dir)
+      if (file.extension !== '.md') return;
+      let dir = config.github.split('/');
+      dir = dir[dir.length - 1];
+      file.data = file.data.replace(/STATIC_GITHUB/g, config.github + '.git');
+      file.data = file.data.replace(/STATIC_DIR/g, dir);
     },
   },
-}
+};
