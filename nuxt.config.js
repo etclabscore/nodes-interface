@@ -7,8 +7,6 @@ for (const l of config.i18n.locales) {
 
 const locale = require('./i18n/' + config.i18n.default + '.json');
 
-const IS_PRODUCTION = process.env.NODE_ENV === 'production';
-
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -66,9 +64,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: IS_PRODUCTION ? 'https://etcnodes.org' : 'http://localhost:3000',
-  },
+  axios: {},
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {
