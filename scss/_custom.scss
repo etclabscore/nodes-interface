@@ -165,6 +165,10 @@ table {
   max-width: 300px !important;
 }
 
+.v-navigation-drawer__content .v-data-table__wrapper {
+  overflow: inherit;
+}
+
 // borders & strips
 
 // table of content

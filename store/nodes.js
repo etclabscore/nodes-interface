@@ -73,8 +73,14 @@ export const actions = {
       const { data } = await axios.get('https://peers.etccore.in/v5/nodes.json')
 
       const { nodes, clients, forks, protocols, countries } = parseNodes(data)
+
+      // sort clients by count
+      const sortedClients = Object.fromEntries(
+        Object.entries(clients).sort(([, a], [, b]) => b - a)
+      )
+
       commit('SET_NODES', nodes)
-      commit('SET_CLIENTS', clients)
+      commit('SET_CLIENTS', sortedClients)
       commit('SET_FORKIDS', forks)
       commit('SET_PROTOCOLS', protocols)
       commit('SET_COUNTRIES', countries)
@@ -99,6 +105,14 @@ const parseNodes = function (nodes) {
     // filter out any nodes that didnt get past handshake.
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
       const name = node.name.split('/')
+
+      // check if nodes have set a custom identity name under versioning string
+      const semver = /v\d+\.\d+\.\d+/
+      if (name && name[1] && !semver.test(name[1])) {
+        name[0] += '/' + name[1]
+        name.splice(1, 1)
+      }
+
       node.client = {
         name: name[0] ? name[0] : '-',
         release: name[1] ? name[1] : '-',
