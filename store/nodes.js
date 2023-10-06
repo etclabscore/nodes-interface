@@ -99,6 +99,13 @@ const parseNodes = function (nodes) {
     // filter out any nodes that didnt get past handshake.
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
       const name = node.name.split('/')
+
+      // handle ETCMC nodes versioning
+      if (name && name[1].includes('ETCMC')) {
+        name[0] += '/ETCMC'
+        name.splice(1, 1)
+      }
+
       node.client = {
         name: name[0] ? name[0] : '-',
         release: name[1] ? name[1] : '-',
