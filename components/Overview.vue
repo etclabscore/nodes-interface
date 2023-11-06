@@ -1,5 +1,5 @@
 <template>
-  <span class="pa-0 ma-0 bg-0">
+  <span class="node-overview pa-0 ma-0 bg-0">
     <v-card tile class="mr-1 mb-1 mt-1" style="margin-left: 6px">
       <v-sheet
         v-if="showMapOverlay"
