@@ -211,6 +211,7 @@ export default {
       search: null,
       expanded: [],
       tab: null,
+      // eslint-disable-next-line vue/no-computed-properties-in-data
       nf: new Intl.NumberFormat(this.locale, {}),
       locales: {
         en: enUS,
