@@ -1,0 +1,8 @@
+**/.git
+**/.github
+**/.svn
+**/.hg
+**/node_modules
+
+**/assets
+**/content
