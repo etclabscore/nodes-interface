@@ -51,6 +51,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    // https://nuxt.com/modules/date-fns
+    ['@nuxtjs/date-fns', { locales: [config.i18n.locales.map((l) => l.code)] }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
