@@ -58,6 +58,14 @@
     ]
   },
   "router": {
-    "base": "/"
+    "base": "/",
+    "middleware": "forkPageActivation"
+  },
+  "hardfork": {
+    "enabled": true,
+    "blockNumber": 19000000,
+    "name": "Spiral",
+    "ecip": "https: //ecips.ethereumclassic.org/ECIPs/ecip-1109",
+    "secondsPerBlock": 13.5
   }
 }

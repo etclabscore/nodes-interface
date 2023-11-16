@@ -7,7 +7,9 @@
     "totalNodes": "Total Nodes",
     "forkIdCurrent": "ForkId (Current)",
     "forkIdNext": "ForkId (Next)",
-    "protocols": "Protocol Versions"
+    "protocols": "Protocol Versions",
+    "ready": "Ready",
+    "notReady": "Not Ready"
   },
   "nodes": {
     "nodes": "Nodes",
@@ -42,6 +44,9 @@
       "title": "Client",
       "tooltip": "The client software this node is running"
     },
+    "identity": {
+      "title": "Identity"
+    },
     "enode": {
       "title": "Enode",
       "tooltip": "This nodes URL scheme (used with addPeer)"
@@ -60,6 +65,20 @@
       "tooltip": "This nodes head blockhash and total difficulty",
       "action1": "Total Difficulty"
     }
+  },
+  "operators": {
+    "title": "Node Operators",
+    "breadcrumb": "Node Operators",
+    "service": "Service",
+    "status": "Status"
+  },
+  "upcomingForkCard": {
+    "title": "Upcoming fork adoption"
+  },
+  "nodeOperatorsUpgradedCard": {
+    "title": "Node operators upgraded",
+    "upgraded": "Upgraded",
+    "notUpgraded": "Not Upgraded"
   },
   "map": {
     "nodes": "{count} node | {count} nodes"

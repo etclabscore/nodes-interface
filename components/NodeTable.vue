@@ -249,6 +249,12 @@ export default {
           value: 'client.name',
         },
         {
+          text: this.$t('nodes.identity.title'),
+          align: 'start',
+          sortable: true,
+          value: 'client.identity',
+        },
+        {
           text: this.$t('nodes.version'),
           sortable: true,
           value: 'client.release',

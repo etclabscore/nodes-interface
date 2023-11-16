@@ -11,7 +11,8 @@
     "0x9007bfcc": "Phoenix",
     "0xdb63a1ca": "Thanos",
     "0x0f6bf187": "Magneto",
-    "0x7fd1bb25": "Mystique"
+    "0x7fd1bb25": "Mystique",
+    "0x0121eac0": "Spiral"
   },
   "block": {
     "0": "-",
@@ -25,6 +26,7 @@
     "10500839": "Phoenix",
     "11700000": "Thanos",
     "13189133": "Magneto",
-    "14525000": "Mystique"
+    "14525000": "Mystique",
+    "19000000": "Spiral"
   }
 }
