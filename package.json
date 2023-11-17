@@ -21,7 +21,7 @@
     "date-fns": "^2.23.0",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.28.1",
-    "prism-themes": "^1.8.0",
+    "prism-themes": "^1.9.0",
     "vue-apexcharts": "^1.6.2",
     "vue-world-map-ms": "^0.1.4"
   },
