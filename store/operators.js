@@ -1,4 +1,5 @@
 import axios from 'axios'
+import config from '~/params/config.json'
 
 export const state = () => ({
   raw: {}, // full list of nodes (all data) (used by nodes page)
@@ -36,7 +37,7 @@ export const mutations = {
 export const actions = {
   async set_operators({ commit, state }) {
     if (!state.updated) {
-      const { data } = await axios.get('https://operator-status.etcnodes.org/')
+      const { data } = await axios.get(config.apiEndpoints.operators)
 
       // example response:
       // operators = {

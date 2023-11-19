@@ -66,6 +66,24 @@
       "action1": "Total Difficulty"
     }
   },
+  "liveStats": {
+    "title": "Live client status",
+    "nodes": "Nodes",
+    "search": "Search",
+    "raw": "Raw",
+    "all": "All",
+    "noData": "No data",
+    "loading": "Loading..",
+    "noResults": "No Results",
+    "perPage": "Nodes per page:",
+    "client": "Client",
+    "version": "Version",
+    "status": "Status",
+    "blockNumber": "Block Number",
+    "blockHash": "Block Hash",
+    "totalDifficulty": "Total Difficulty",
+    "lastBlock": "Last Block"
+  },
   "operators": {
     "title": "Node Operators",
     "breadcrumb": "Node Operators",

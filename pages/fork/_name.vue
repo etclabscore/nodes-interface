@@ -2,7 +2,16 @@
   <v-container v-if="!$fetchState.pending" fluid>
     <v-row>
       <v-col cols="12">
-        <ForkCountdownCard />
+        <ForkCountdownCard :latest-block-number="liveStats.latestBlockNumber" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <LiveStatsTable
+          :nodes="liveStats.raw"
+          :last-updated="liveStats.now"
+          :title="$t('liveStats.title')"
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -29,6 +38,7 @@
 <script>
 import ForkClientUpgraded from '~/components/ForkClientUpgraded.vue'
 import ForkCountdownCard from '~/components/ForkCountdownCard.vue'
+import LiveStatsTable from '~/components/LiveStatsTable.vue'
 import NodeOperatorsTable from '~/components/NodeOperatorsTable.vue'
 import NodeOperatorsUpgradedCard from '~/components/NodeOperatorsUpgradedCard.vue'
 
@@ -37,6 +47,7 @@ export default {
   components: {
     NodeOperatorsTable,
     NodeOperatorsUpgradedCard,
+    LiveStatsTable,
     ForkCountdownCard,
     ForkClientUpgraded,
   },
@@ -46,8 +57,11 @@ export default {
     }
   },
   async fetch() {
-    await this.$store.dispatch('nodes/set_nodes')
-    await this.$store.dispatch('operators/set_operators')
+    return await Promise.all([
+      this.$store.dispatch('nodes/set_nodes'),
+      this.$store.dispatch('operators/set_operators'),
+      this.$store.dispatch('liveStats/set_live_stats'),
+    ])
   },
   computed: {
     nodes() {
@@ -55,6 +69,9 @@ export default {
     },
     operators() {
       return this.$store.state.operators
+    },
+    liveStats() {
+      return this.$store.state.liveStats
     },
     isMobile() {
       return this.$store.state.mobile
@@ -71,6 +88,12 @@ export default {
         },
       ]
     },
+  },
+  mounted() {
+    this.$store.dispatch('liveStats/auto_polling')
+  },
+  destroyed() {
+    this.$store.dispatch('liveStats/clear_auto_polling')
   },
 }
 </script>

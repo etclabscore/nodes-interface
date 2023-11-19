@@ -81,25 +81,12 @@
 export default {
   name: 'ForkCountdownCard',
   props: {
-    // nodes: {
-    //   type: Object,
-    //   required: true,
-    // },
-  },
-  data() {
-    return {
-      // nextFork: {
-      //   blockNumber: 19_000_000,
-      //   name: 'Spiral',
-      //   ecip: 'https://ecips.ethereumclassic.org/ECIPs/ecip-1109',
-      // },
-      latestBlockNumber: 0,
-    }
+    latestBlockNumber: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
-    // params() {
-    //   return this.$store.state.params
-    // },
     nextFork() {
       return this.$store.state.params.hardfork
     },
@@ -128,41 +115,5 @@ export default {
       )
     },
   },
-  mounted() {
-    this.fetchBlockNumber()
-
-    setInterval(
-      function () {
-        this.fetchBlockNumber()
-      }.bind(this),
-      10 * 1000
-    )
-  },
-  methods: {
-    async fetchBlockNumber() {
-      const requestData = {
-        method: 'eth_blockNumber',
-        jsonrpc: '2.0',
-        params: [],
-        id: Date.now(),
-      }
-
-      const { data } = await this.$axios.post(
-        'https://etc.rivet.link',
-        requestData
-      )
-      this.latestBlockNumber = parseInt(data.result, 16)
-    },
-
-    // const forkAt = moment().add(calculateTimeDifference(forkBlockN, currentBlockNumber, $('#blockTimeEstimateSeconds').val()), 's');
-
-    // $('#forkBlock').text(`${forkBlockN}`);
-    // $('#forkAt').text(`${forkAt.fromNow()}`);
-    // $('#forkAtHuman').text(`Local (${forkAt.format('Z')}): ${forkAt.format('LLLL')}`);
-    // $('#forkAtHuman-UTC').text(`Universal (UTC): ${forkAt.utc().format().replace('T', ' ').replace('Z', '')}`);
-  },
-  // calculateTimeDifference(fork, current) {
-  //   return (fork - current) * this.secondsPerBlock;
-  // }
 }
 </script>
