@@ -1,6 +1,7 @@
 import axios from 'axios'
 import forks from '~/assets/forks.json'
 import params from '~/params/config.json'
+import { parseNodeVersion } from '~/utils'
 
 export const state = () => ({
   raw: [], // full list of nodes (all data) (used by nodes page)
@@ -131,30 +132,35 @@ const parseNodes = function (nodes) {
   for (const node of nodes) {
     // filter out any nodes that didnt get past handshake.
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
-      const name = node.name.split('/')
+      const nodeVersionData = parseNodeVersion(node.name)
+      // const name = node.name.split('/')
 
-      // check if nodes have set a custom identity name under versioning string
-      let identity
-      const semver = /v\d+\.\d+\.\d+/
-      if (name && name[1] && !semver.test(name[1])) {
-        identity = name[1]
-        name.splice(1, 1)
-      }
+      // // check if nodes have set a custom identity name under versioning string
+      // let identity
+      // const semver = /v\d+\.\d+\.\d+/
+      // if (name && name[1] && !semver.test(name[1])) {
+      //   identity = name[1]
+      //   name.splice(1, 1)
+      // }
 
-      node.client = {
-        name: name[0] ? name[0] : '-',
-        identity: identity || '-',
-        release: name[1] ? name[1] : '-',
-        platform: name[2] ? name[2] : '-',
-        extra: name[3] ? name[3] : '',
-      }
+      // node.client = {
+      //   name: name[0] ? name[0] : '-',
+      //   identity: identity || '-',
+      //   release: name[1] ? name[1] : '-',
+      //   platform: name[2] ? name[2] : '-',
+      //   extra: name[3] ? name[3] : '',
+      // }
 
-      let nameWithIdentity = node.client.name
-      if (identity) {
-        nameWithIdentity += `/${identity}`
-      }
-      clients[nameWithIdentity] = clients[nameWithIdentity]
-        ? clients[nameWithIdentity] + 1
+      node.client = nodeVersionData
+
+      // let nameWithIdentity = node.client.name
+      // if (identity) {
+      //   nameWithIdentity += `/${identity}`
+      // }
+      clients[node.client.nameWithIdentity] = clients[
+        node.client.nameWithIdentity
+      ]
+        ? clients[node.client.nameWithIdentity] + 1
         : 1
 
       if (node.protocols.eth.forkId) {
