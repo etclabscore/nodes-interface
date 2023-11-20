@@ -8,6 +8,10 @@ for (const l of config.i18n.locales) {
 const locale = require('./i18n/' + config.i18n.default + '.json')
 
 export default {
+  server: {
+    host: '127.0.0.1', // default: localhost
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
