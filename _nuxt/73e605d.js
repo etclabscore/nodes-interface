@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{481:function(t,n,e){"use strict";e.r(n);var l={name:"Example"},r=e(101),component=Object(r.a)(l,(function(){var t=this._self._c;return t("v-card",{attrs:{flat:""}},[t("v-card-title",[this._v("Example Component")])],1)}),[],!1,null,null,null);n.default=component.exports}}]);
