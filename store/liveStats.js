@@ -27,7 +27,7 @@ export const mutations = {
         callback()
       }
       this.dispatch('liveStats/set_live_stats')
-    }, config.hardfork.secondsPerBlock * 1000)
+    }, config.apiEndpoints.liveStatsFetchInterval * 1000)
   },
 
   CLEAR_INTERVAL_TIMER(state) {

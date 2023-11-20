@@ -7,7 +7,8 @@
       </template>
       <v-spacer />
       <small style="font-size: 10px">
-        Next update in {{ nextUpdateInSeconds }}s
+        Next update
+        {{ nextUpdateInSeconds ? `in ${nextUpdateInSeconds}s` : 'now' }}
       </small>
     </v-card-title>
     <v-data-table
@@ -132,6 +133,7 @@
 import { formatDistance } from 'date-fns'
 import { enUS, es, ru, zhCN } from 'date-fns/locale'
 import ExtendedListItem from '~/components/ListItem.vue'
+import config from '~/params/config.json'
 
 export default {
   name: 'LiveStatsTable',
@@ -229,9 +231,11 @@ export default {
     },
   },
   created() {
+    // update every 1 second the countdown
     this.updateInterval = setInterval(() => {
       this.nextUpdateInSeconds = Math.round(
-        (Date.now() - this.lastUpdated.getTime()) / 1000
+        config.apiEndpoints.liveStatsFetchInterval -
+          (Date.now() - this.lastUpdated.getTime()) / 1000
       )
     }, 1000)
   },
@@ -247,20 +251,6 @@ export default {
       // clean up version/release to number/tag
       return version.split('-')[0].replace('v', '')
     },
-    // formatIpAddress(address) {
-    //   // remove port
-    //   return address.split(':')[0]
-    // },
-    // formatUptime(contact) {
-    //   return formatDistance(
-    //     new Date(contact.first.unix * 1000),
-    //     new Date(contact.last.unix * 1000),
-    //     {
-    //       addSuffix: false,
-    //       locale: this.locales[this.locale],
-    //     }
-    //   )
-    // },
     formatLastSeen(date) {
       return formatDistance(new Date(date * 1000), Date.now(), {
         addSuffix: true,

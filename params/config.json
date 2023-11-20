@@ -70,6 +70,7 @@
   },
   "apiEndpoints": {
     "operators": "https://api.etcnodes.org/operators",
-    "liveStats": "https://api.etcnodes.org/stats"
+    "liveStats": "https://api.etcnodes.org/stats",
+    "liveStatsFetchInterval": 14.5
   }
 }
