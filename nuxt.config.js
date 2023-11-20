@@ -122,6 +122,11 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
+  // https://nuxtjs.ir/guide/routing#spa-fallback
+  generate: {
+    fallback: true,
+  },
+
   // hooks
   hooks: {
     'content:file:beforeParse': (file) => {
