@@ -7,7 +7,9 @@
     "totalNodes": "节点总数",
     "forkIdCurrent": "ForkId（当前）",
     "forkIdNext": "ForkId（下一个）",
-    "protocols": "协议版本"
+    "protocols": "协议版本",
+    "ready": "Ready",
+    "notReady": "Not Ready"
   },
   "nodes": {
     "nodes": "节点",
@@ -42,6 +44,9 @@
       "title": "客户",
       "tooltip": "此节点正在运行的客户端软件"
     },
+    "identity": {
+      "title": "Identity"
+    },
     "enode": {
       "title": "Enode",
       "tooltip": "此节点 URL 方案（与 addPeer 一起使用）"
@@ -60,6 +65,38 @@
       "tooltip": "这个节点负责区块哈希和总难度",
       "action1": "总难度"
     }
+  },
+  "liveStats": {
+    "title": "Live client status",
+    "nodes": "Nodes",
+    "search": "Search",
+    "raw": "Raw",
+    "all": "All",
+    "noData": "No data",
+    "loading": "Loading..",
+    "noResults": "No Results",
+    "perPage": "Nodes per page:",
+    "client": "Client",
+    "version": "Version",
+    "status": "Status",
+    "blockNumber": "Block Number",
+    "blockHash": "Block Hash",
+    "totalDifficulty": "Total Difficulty",
+    "lastBlock": "Last Block"
+  },
+  "operators": {
+    "title": "Node Operators",
+    "breadcrumb": "Node Operators",
+    "service": "Service",
+    "status": "Status"
+  },
+  "upcomingForkCard": {
+    "title": "Upcoming fork adoption"
+  },
+  "nodeOperatorsUpgradedCard": {
+    "title": "Node operators upgraded",
+    "upgraded": "Upgraded",
+    "notUpgraded": "Not Upgraded"
   },
   "map": {
     "nodes": "{count} 个节点 | {count} 个节点"
