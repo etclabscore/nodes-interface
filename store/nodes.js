@@ -100,8 +100,7 @@ export const mutations = {
 export const actions = {
   async set_nodes({ commit, state }) {
     if (!state.updated) {
-      // TODO(iquidus): handle this better
-      const { data } = await axios.get('https://peers.etccore.in/v5/nodes.json')
+      const { data } = await axios.get(params.apiEndpoints.peers)
 
       const {
         nodes,
