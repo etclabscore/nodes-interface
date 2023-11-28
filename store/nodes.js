@@ -147,30 +147,9 @@ const parseNodes = function (nodes) {
     // filter out any nodes that didnt get past handshake.
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
       const nodeVersionData = parseNodeVersion(node.name)
-      // const name = node.name.split('/')
-
-      // // check if nodes have set a custom identity name under versioning string
-      // let identity
-      // const semver = /v\d+\.\d+\.\d+/
-      // if (name && name[1] && !semver.test(name[1])) {
-      //   identity = name[1]
-      //   name.splice(1, 1)
-      // }
-
-      // node.client = {
-      //   name: name[0] ? name[0] : '-',
-      //   identity: identity || '-',
-      //   release: name[1] ? name[1] : '-',
-      //   platform: name[2] ? name[2] : '-',
-      //   extra: name[3] ? name[3] : '',
-      // }
 
       node.client = nodeVersionData
 
-      // let nameWithIdentity = node.client.name
-      // if (identity) {
-      //   nameWithIdentity += `/${identity}`
-      // }
       clients[node.client.nameWithIdentity] = clients[
         node.client.nameWithIdentity
       ]
