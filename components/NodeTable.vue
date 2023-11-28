@@ -32,7 +32,7 @@
       item-key="id"
       :show-expand="!isMobile"
       :hide-default-footer="true"
-      :items-per-page="-1"
+      :items-per-page="isMobile ? -1 : 1000"
       :loading-text="$t('nodes.loading')"
       :no-data-text="$t('nodes.noData')"
       :no-results-text="$t('nodes.noResults')"
