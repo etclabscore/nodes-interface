@@ -21,11 +21,30 @@ export const mutations = {
     state.raw = raw
   },
   SET_CLIENTS(state, clients) {
+    // merge items with count > 10
+    const mergedClients = Object.entries(clients).reduce(
+      (acc, [key, value]) => {
+        if (value < 10) {
+          const [name] = key.split('/')
+          acc[name] = acc[name] ? acc[name] + value : value
+        } else {
+          acc[key] = value
+        }
+        return acc
+      },
+      {}
+    )
+
+    // sort clients by count
+    const sortedClients = Object.fromEntries(
+      Object.entries(mergedClients).sort(([, a], [, b]) => b - a)
+    )
+
     state.clients = {
-      table: clients,
+      table: sortedClients,
       chart: {
-        series: Object.values(clients),
-        labels: Object.keys(clients),
+        series: Object.values(sortedClients),
+        labels: Object.keys(sortedClients),
       },
     }
   },
@@ -93,13 +112,8 @@ export const actions = {
         countries,
       } = parseNodes(data)
 
-      // sort clients by count
-      const sortedClients = Object.fromEntries(
-        Object.entries(clients).sort(([, a], [, b]) => b - a)
-      )
-
       commit('SET_NODES', nodes)
-      commit('SET_CLIENTS', sortedClients)
+      commit('SET_CLIENTS', clients)
       commit('SET_CLIENTS_FORK_ADOPTION', clientsForkAdoption)
       commit('SET_FORKIDS', forks)
       commit('SET_PROTOCOLS', protocols)
