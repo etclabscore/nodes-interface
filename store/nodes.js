@@ -210,8 +210,8 @@ const parseNodes = function (nodes) {
         protocols.snap['-'] = protocols.snap['-'] ? protocols.snap['-'] + 1 : 1
       }
 
-      countries[node.ip_info.country] = countries[node.ip_info.country]
-        ? countries[node.ip_info.country] + 1
+      countries[node.ip_info.countryCode] = countries[node.ip_info.countryCode]
+        ? countries[node.ip_info.countryCode] + 1
         : 1
 
       nodesFiltered.push(node)
