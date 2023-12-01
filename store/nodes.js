@@ -21,7 +21,8 @@ export const mutations = {
     state.raw = raw
   },
   SET_CLIENTS(state, clients) {
-    // merge items with count > 10
+    // merge items with count > 10,
+    // where `key` in `clients` is the name identifier (e.g.: CoreGeth/ETCCoop)
     const mergedClients = Object.entries(clients).reduce(
       (acc, [key, value]) => {
         if (value < 10) {
