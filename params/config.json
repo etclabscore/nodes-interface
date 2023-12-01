@@ -63,10 +63,10 @@
   },
   "hardfork": {
     "enabled": true,
-    "blockNumber": 19000000,
+    "blockNumber": 19250000,
     "name": "Spiral",
     "ecip": "https: //ecips.ethereumclassic.org/ECIPs/ecip-1109",
-    "secondsPerBlock": 13.5
+    "secondsPerBlock": 12.4
   },
   "apiEndpoints": {
     "peers": "https://api.etcnodes.org/peers",
