@@ -1,5 +1,5 @@
 import axios from 'axios'
-import forks from '~/assets/forks.json'
+import forkDefinitions from '~/assets/forks.json'
 import params from '~/params/config.json'
 import { parseNodeVersion } from '~/utils'
 
@@ -59,6 +59,20 @@ export const mutations = {
     }
   },
   SET_FORKIDS(state, forks) {
+    // sort forks based on the chronological order of the fork
+    const forksOrder = Object.values(forkDefinitions.id)
+    forksOrder.push('-') // add '-' to the end of the array
+
+    const chronologicalSort = (obj) =>
+      Object.fromEntries(
+        Object.entries(obj).sort(
+          ([a], [b]) => forksOrder.indexOf(b) - forksOrder.indexOf(a)
+        )
+      )
+
+    forks.current = chronologicalSort(forks.current)
+    forks.next = chronologicalSort(forks.next)
+
     state.forks.current = {
       table: forks.current,
       chart: {
@@ -235,13 +249,13 @@ const parseNodes = function (nodes) {
 }
 
 const getForkId = function (hash) {
-  return forks.id[hash] || hash
+  return forkDefinitions.id[hash] || hash
 }
 
 const getForkBlock = function (number) {
-  return forks.block[number] || number
+  return forkDefinitions.block[number] || number
 }
 
 const getUpcomingFork = function () {
-  return Object.entries(forks.block).pop()
+  return Object.entries(forkDefinitions.block).pop()
 }
