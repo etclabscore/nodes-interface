@@ -23,7 +23,7 @@
       :items="operators"
       class="elevation-1"
       :hide-default-footer="isMobile"
-      :items-per-page="8"
+      :items-per-page="-1"
       :loading-text="$t('nodes.loading')"
       :no-data-text="$t('nodes.noData')"
       :no-results-text="$t('nodes.noResults')"
