@@ -5,12 +5,19 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <!-- <NuxtLink
-        v-if="params.hardfork.enabled"
-        :to="`/fork/${params.hardfork.name.toLowerCase()}`"
-        class="ml-4"
-        >{{ params.hardfork.name }} status page</NuxtLink
-      > -->
+      <span>
+        <NuxtLink
+          v-if="params.hardfork.enabled"
+          :to="`/fork/${params.hardfork.name.toLowerCase()}`"
+          class="ml-4"
+        >
+          {{ params.hardfork.name }} status page
+        </NuxtLink>
+        <small>
+          - See readiness dashboard for the upcoming
+          {{ params.hardfork.name }} hardfork
+        </small>
+      </span>
 
       <v-spacer />
       <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
