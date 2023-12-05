@@ -91,10 +91,10 @@
     "status": "Status"
   },
   "upcomingForkCard": {
-    "title": "Upcoming fork adoption"
+    "title": "Node readiness"
   },
   "nodeOperatorsUpgradedCard": {
-    "title": "Node operators upgraded",
+    "title": "Services readiness",
     "upgraded": "Upgraded",
     "notUpgraded": "Not Upgraded"
   },
