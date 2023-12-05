@@ -46,10 +46,8 @@
         @click="$emit('resultClicked')"
       >
         <v-list-item-content>
-          <v-list-item-title v-text="item.title"></v-list-item-title>
-          <v-list-item-subtitle
-            v-text="item.description"
-          ></v-list-item-subtitle>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-subtitle>{{ item.description }}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </template>

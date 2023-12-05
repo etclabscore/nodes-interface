@@ -7,6 +7,9 @@
 
 // content edit
 // dark mode text color fix
-.theme--dark>div.v-card__text>div.nuxt-content-container>.nuxt-content-editor {
+.theme--dark
+  > div.v-card__text
+  > div.nuxt-content-container
+  > .nuxt-content-editor {
   color: #fff !important;
 }

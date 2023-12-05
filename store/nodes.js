@@ -1,9 +1,12 @@
 import axios from 'axios'
-import forks from '../assets/forks.json'
+import forkDefinitions from '~/assets/forks.json'
+import params from '~/params/config.json'
+import { parseNodeVersion } from '~/utils'
 
 export const state = () => ({
   raw: [], // full list of nodes (all data) (used by nodes page)
   clients: {}, // data for clients table (used by home page)
+  clientsForkAdoption: {}, // data for clients fork adoption chart (used by fork page)
   forks: {}, // data for forkIds table (used by home page)
   countries: {}, // country data for heat map
   protocols: {
@@ -18,15 +21,58 @@ export const mutations = {
     state.raw = raw
   },
   SET_CLIENTS(state, clients) {
+    // merge items with count > 10,
+    // where `key` in `clients` is the name identifier (e.g.: CoreGeth/ETCCoop)
+    const mergedClients = Object.entries(clients).reduce(
+      (acc, [key, value]) => {
+        if (value < 10) {
+          const [name] = key.split('/')
+          acc[name] = acc[name] ? acc[name] + value : value
+        } else {
+          acc[key] = value
+        }
+        return acc
+      },
+      {}
+    )
+
+    // sort clients by count
+    const sortedClients = Object.fromEntries(
+      Object.entries(mergedClients).sort(([, a], [, b]) => b - a)
+    )
+
     state.clients = {
-      table: clients,
+      table: sortedClients,
       chart: {
-        series: Object.values(clients),
-        labels: Object.keys(clients),
+        series: Object.values(sortedClients),
+        labels: Object.keys(sortedClients),
+      },
+    }
+  },
+  SET_CLIENTS_FORK_ADOPTION(state, clientsForkAdoption) {
+    state.clientsForkAdoption = {
+      table: clientsForkAdoption,
+      chart: {
+        series: Object.values(clientsForkAdoption.Total),
+        labels: Object.keys(clientsForkAdoption.Total),
       },
     }
   },
   SET_FORKIDS(state, forks) {
+    // sort forks based on the chronological order of the fork
+    const forksOrder = Object.values(forkDefinitions.id)
+    forksOrder.push('-') // add '-' to the end of the array
+
+    const chronologicalSort = (obj) =>
+      Object.fromEntries(
+        Object.entries(obj).sort(
+          ([a], [b]) => forksOrder.indexOf(b) - forksOrder.indexOf(a)
+        )
+      )
+
+    forks.current = chronologicalSort(forks.current)
+    forks.next = chronologicalSort(forks.next)
+
     state.forks.current = {
       table: forks.current,
       chart: {
@@ -69,18 +115,20 @@ export const mutations = {
 export const actions = {
   async set_nodes({ commit, state }) {
     if (!state.updated) {
-      // TODO(iquidus): handle this better
-      const { data } = await axios.get('https://peers.etccore.in/v5/nodes.json')
+      const { data } = await axios.get(params.apiEndpoints.peers)
 
-      const { nodes, clients, forks, protocols, countries } = parseNodes(data)
-
-      // sort clients by count
-      const sortedClients = Object.fromEntries(
-        Object.entries(clients).sort(([, a], [, b]) => b - a)
-      )
+      const {
+        nodes,
+        clients,
+        clientsForkAdoption,
+        forks,
+        protocols,
+        countries,
+      } = parseNodes(data)
 
       commit('SET_NODES', nodes)
-      commit('SET_CLIENTS', sortedClients)
+      commit('SET_CLIENTS', clients)
+      commit('SET_CLIENTS_FORK_ADOPTION', clientsForkAdoption)
       commit('SET_FORKIDS', forks)
       commit('SET_PROTOCOLS', protocols)
       commit('SET_COUNTRIES', countries)
@@ -89,7 +137,15 @@ export const actions = {
 }
 
 const parseNodes = function (nodes) {
+  const [upcomingForkBlock, upcomingForkName] = getUpcomingFork()
+
   const clients = {}
+  const clientsForkAdoption = {
+    Total: {
+      Ready: 0,
+      'Not Ready': 0,
+    },
+  }
   const forks = {
     current: {},
     next: {},
@@ -104,24 +160,14 @@ const parseNodes = function (nodes) {
   for (const node of nodes) {
     // filter out any nodes that didnt get past handshake.
     if (node.protocols.eth !== 'handshake' && node.protocols.eth.version > 0) {
-      const name = node.name.split('/')
+      const nodeVersionData = parseNodeVersion(node.name)
 
-      // check if nodes have set a custom identity name under versioning string
-      const semver = /v\d+\.\d+\.\d+/
-      if (name && name[1] && !semver.test(name[1])) {
-        name[0] += '/' + name[1]
-        name.splice(1, 1)
-      }
+      node.client = nodeVersionData
 
-      node.client = {
-        name: name[0] ? name[0] : '-',
-        release: name[1] ? name[1] : '-',
-        platform: name[2] ? name[2] : '-',
-        extra: name[3] ? name[3] : '',
-      }
-
-      clients[node.client.name] = clients[node.client.name]
-        ? clients[node.client.name] + 1
+      clients[node.client.nameWithIdentity] = clients[
+        node.client.nameWithIdentity
+      ]
+        ? clients[node.client.nameWithIdentity] + 1
         : 1
 
       if (node.protocols.eth.forkId) {
@@ -142,6 +188,31 @@ const parseNodes = function (nodes) {
         ]
           ? forks.next[node.protocols.eth.forkId.nextTag] + 1
           : 1
+
+        let upgradedForHarfork = false
+        let upcomingKey = 'Not Ready'
+        if (
+          node.protocols.eth.forkId.next === upcomingForkBlock ||
+          (node.protocols.eth.forkId.tag === upcomingForkName &&
+            node.protocols.eth.forkId.next === 0)
+        ) {
+          upgradedForHarfork = true
+          upcomingKey = 'Ready'
+        }
+        clientsForkAdoption.Total[upcomingKey] += 1
+
+        if (params.hardfork.enabled) {
+          if (!clientsForkAdoption[node.client.name]) {
+            clientsForkAdoption[node.client.name] = {
+              Ready: 0,
+              'Not Ready': 0,
+            }
+          }
+
+          clientsForkAdoption[node.client.name][
+            upgradedForHarfork ? 'Ready' : 'Not Ready'
+          ] += 1
+        }
       }
 
       const e = 'v' + node.protocols.eth.version
@@ -154,20 +225,37 @@ const parseNodes = function (nodes) {
         protocols.snap['-'] = protocols.snap['-'] ? protocols.snap['-'] + 1 : 1
       }
 
-      countries[node.ip_info.country] = countries[node.ip_info.country]
-        ? countries[node.ip_info.country] + 1
+      countries[node.ip_info.countryCode] = countries[node.ip_info.countryCode]
+        ? countries[node.ip_info.countryCode] + 1
         : 1
 
       nodesFiltered.push(node)
     }
   }
-  return { nodes: nodesFiltered, clients, forks, protocols, countries }
+
+  // ugly way to move total to the bottom of the table
+  const total = clientsForkAdoption.Total
+  delete clientsForkAdoption.Total
+  clientsForkAdoption.Total = total
+
+  return {
+    nodes: nodesFiltered,
+    clients,
+    clientsForkAdoption,
+    forks,
+    protocols,
+    countries,
+  }
 }
 
 const getForkId = function (hash) {
-  return forks.id[hash] || hash
+  return forkDefinitions.id[hash] || hash
 }
 
 const getForkBlock = function (number) {
-  return forks.block[number] || number
+  return forkDefinitions.block[number] || number
+}
+
+const getUpcomingFork = function () {
+  return Object.entries(forkDefinitions.block).pop()
 }

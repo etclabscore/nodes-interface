@@ -5,8 +5,8 @@
   height: 6px; /* for horizontal scrollbars */
 }
 ::-webkit-scrollbar-track {
-  background:var(--v-staticborders-base) !important;
-  z-index: 4 !important
+  background: var(--v-staticborders-base) !important;
+  z-index: 4 !important;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--v-primary-base) !important;

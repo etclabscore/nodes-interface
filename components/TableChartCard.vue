@@ -1,7 +1,7 @@
 <template>
   <v-card tile>
     <div class="d-flex flex-no-wrap justify-space-between">
-      <div :class="{ 'w-100': isMobile, 'mw-320': !isMobile }">
+      <div :class="{ 'w-100': isMobile, 'w-auto': !isMobile }">
         <v-card-title>
           <v-icon class="mr-1">{{ icon }}</v-icon>
           {{ title }}
@@ -11,8 +11,22 @@
             <thead>
               <tr>
                 <th class="text-left">{{ $t('home.totalNodes') }}</th>
-                <th class="text-right">{{ total }} (100%)</th>
+                <th class="text-right" :colspan="inlineColsNumber">
+                  {{ total }} (100%)
+                </th>
               </tr>
+              <template v-if="inlineColNames.length > 0">
+                <tr>
+                  <th class="text-left"></th>
+                  <th
+                    v-for="name of inlineColNames"
+                    :key="name"
+                    class="text-right"
+                  >
+                    {{ name }}
+                  </th>
+                </tr>
+              </template>
             </thead>
             <tbody>
               <tr v-for="(count, name) of table" :key="name">
@@ -28,9 +42,22 @@
                     </nuxt-link>
                   </td>
                 </template>
-                <td class="text-right">
-                  {{ count }} ({{ percent(count, total) }}%)
-                </td>
+                <template v-if="typeof count === 'object'">
+                  <td
+                    v-for="num of Object.values(count)"
+                    :key="`${name}/${num}`"
+                    class="text-right"
+                  >
+                    {{ num }} ({{
+                      percent(num, rowTotal(Object.values(count)))
+                    }}%)
+                  </td>
+                </template>
+                <template v-else>
+                  <td class="text-right">
+                    {{ count }} ({{ percent(count, total) }}%)
+                  </td>
+                </template>
               </tr>
             </tbody>
           </template>
@@ -96,6 +123,12 @@ export default {
         return '-'
       },
     },
+    colors: {
+      type: Array,
+      default() {
+        return ['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0']
+      },
+    },
   },
   computed: {
     theme() {
@@ -134,12 +167,27 @@ export default {
         legend: {
           show: false,
         },
+        colors: this.colors,
       }
+    },
+    inlineColsNumber() {
+      const vals = Object.values(this.table)
+      return typeof vals[0] === 'object' ? Object.values(vals[0]).length : 1
+    },
+    inlineColNames() {
+      const vals = Object.values(this.table)
+      if (typeof vals[0] === 'object') {
+        return Object.keys(vals[0])
+      }
+      return []
     },
   },
   methods: {
     percent(count, total) {
       return ((count / total) * 100).toFixed(1)
+    },
+    rowTotal(vals) {
+      return vals.reduce((a, b) => a + b, 0)
     },
     getChartOptions() {
       return {

@@ -7,7 +7,9 @@
     "totalNodes": "Total Nodes",
     "forkIdCurrent": "ForkId (Current)",
     "forkIdNext": "ForkId (Next)",
-    "protocols": "Protocol Versions"
+    "protocols": "Protocol Versions",
+    "ready": "Ready",
+    "notReady": "Not Ready"
   },
   "nodes": {
     "nodes": "Nodes",
@@ -42,6 +44,9 @@
       "title": "Client",
       "tooltip": "The client software this node is running"
     },
+    "identity": {
+      "title": "Identity"
+    },
     "enode": {
       "title": "Enode",
       "tooltip": "This nodes URL scheme (used with addPeer)"
@@ -60,6 +65,38 @@
       "tooltip": "This nodes head blockhash and total difficulty",
       "action1": "Total Difficulty"
     }
+  },
+  "liveStats": {
+    "title": "Live client status",
+    "nodes": "Nodes",
+    "search": "Search",
+    "raw": "Raw",
+    "all": "All",
+    "noData": "No data",
+    "loading": "Loading..",
+    "noResults": "No Results",
+    "perPage": "Nodes per page:",
+    "client": "Client",
+    "version": "Version",
+    "status": "Status",
+    "blockNumber": "Block Number",
+    "blockHash": "Block Hash",
+    "totalDifficulty": "Total Difficulty",
+    "lastBlock": "Last Block"
+  },
+  "operators": {
+    "title": "Node Operators",
+    "breadcrumb": "Node Operators",
+    "service": "Service",
+    "status": "Status"
+  },
+  "upcomingForkCard": {
+    "title": "Node readiness"
+  },
+  "nodeOperatorsUpgradedCard": {
+    "title": "Services readiness",
+    "upgraded": "Upgraded",
+    "notUpgraded": "Not Upgraded"
   },
   "map": {
     "nodes": "{count} node | {count} nodes"

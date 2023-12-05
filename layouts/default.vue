@@ -4,6 +4,14 @@
       <v-btn icon nuxt to="/" class="mr-1">
         <v-icon>mdi-home</v-icon>
       </v-btn>
+
+      <!-- <NuxtLink
+        v-if="params.hardfork.enabled"
+        :to="`/fork/${params.hardfork.name.toLowerCase()}`"
+        class="ml-4"
+        >{{ params.hardfork.name }} status page</NuxtLink
+      > -->
+
       <v-spacer />
       <v-btn icon @click.stop="$vuetify.theme.dark = !$vuetify.theme.dark">
         <v-icon>mdi-theme-light-dark</v-icon>

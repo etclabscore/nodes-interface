@@ -6,10 +6,10 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 
+import { createLocalVue, mount } from '@vue/test-utils'
+
 // components
 import ExampleComponent from '@/components/Example.vue'
-
-import { mount, createLocalVue } from '@vue/test-utils'
 
 Vue.use(Vuetify)
 

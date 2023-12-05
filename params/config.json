@@ -58,6 +58,20 @@
     ]
   },
   "router": {
-    "base": "/"
+    "base": "/",
+    "middleware": "forkPageActivation"
+  },
+  "hardfork": {
+    "enabled": true,
+    "blockNumber": 19250000,
+    "name": "Spiral",
+    "ecip": "https: //ecips.ethereumclassic.org/ECIPs/ecip-1109",
+    "secondsPerBlock": 12.4
+  },
+  "apiEndpoints": {
+    "peers": "https://api.etcnodes.org/peers",
+    "operators": "https://api.etcnodes.org/operators",
+    "liveStats": "https://api.etcnodes.org/stats",
+    "liveStatsFetchInterval": 14.5
   }
 }

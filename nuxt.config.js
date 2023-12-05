@@ -8,6 +8,11 @@ for (const l of config.i18n.locales) {
 const locale = require('./i18n/' + config.i18n.default + '.json')
 
 export default {
+  server: {
+    host: '127.0.0.1', // default: localhost
+    port: process.env.PORT || 3000,
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -47,10 +52,12 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://github.com/nuxt-community/eslint-module
+    // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    // https://nuxt.com/modules/date-fns
+    ['@nuxtjs/date-fns', { locales: [config.i18n.locales.map((l) => l.code)] }],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -119,6 +126,11 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // https://nuxtjs.ir/guide/routing#spa-fallback
+  generate: {
+    fallback: true,
+  },
 
   // hooks
   hooks: {

@@ -32,7 +32,7 @@
       item-key="id"
       :show-expand="!isMobile"
       :hide-default-footer="true"
-      :items-per-page="-1"
+      :items-per-page="isMobile ? -1 : 1000"
       :loading-text="$t('nodes.loading')"
       :no-data-text="$t('nodes.noData')"
       :no-results-text="$t('nodes.noResults')"
@@ -211,6 +211,7 @@ export default {
       search: null,
       expanded: [],
       tab: null,
+      // eslint-disable-next-line vue/no-computed-properties-in-data
       nf: new Intl.NumberFormat(this.locale, {}),
       locales: {
         en: enUS,
@@ -246,6 +247,12 @@ export default {
           align: 'start',
           sortable: true,
           value: 'client.name',
+        },
+        {
+          text: this.$t('nodes.identity.title'),
+          align: 'start',
+          sortable: true,
+          value: 'client.identity',
         },
         {
           text: this.$t('nodes.version'),
