@@ -50,34 +50,31 @@
       <v-divider></v-divider>
 
       <p class="mt-3">
-        We will soon update here with the client versions that support the
-        {{ nextFork.name }} hardfork.
-      </p>
-
-      <!-- <p class="mt-3">
         To prepare for this fork, please upgrade Ethereum Classic client
         programs to equal to or better than the following versions.
       </p>
 
       <ul>
         <li>
-          <a href="https://github.com/etclabscore/core-geth/releases/tag/v1.12.17"
-            >core-geth v1.12.17</a
+          <a
+            href="https://github.com/etclabscore/core-geth/releases/tag/v1.12.17"
           >
+            core-geth v1.12.17
+          </a>
         </li>
         <li>
-          <a href="https://github.com/hyperledger/besu/releases/tag/23.10.3"
-            >besu v23.10.3</a
-          >
+          <a href="https://github.com/hyperledger/besu/releases">
+            besu (upcoming release)
+          </a>
         </li>
       </ul>
 
       <p>
         You can also better monitor the fork transition at the
-        <a href="https://fork-monitor.etc-network.info/" target="_blank"
-          >Fork Monitor</a
+        <a href="https://fork-monitor.etc-network.info/" target="_blank">
+          Fork Monitor </a
         >.
-      </p> -->
+      </p>
     </div>
   </v-sheet>
 </template>
