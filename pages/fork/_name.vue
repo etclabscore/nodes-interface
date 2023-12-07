@@ -1,38 +1,48 @@
 <template>
-  <v-container v-if="!$fetchState.pending" fluid>
-    <v-row>
-      <v-col cols="12">
-        <ForkCountdownCard :latest-block-number="liveStats.latestBlockNumber" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12">
-        <LiveStatsTable
-          :nodes="liveStats.raw"
-          :last-updated="liveStats.now"
-          :title="$t('liveStats.title')"
-        />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12" md="6">
-        <ForkClientUpgraded :nodes="nodes" />
-      </v-col>
-      <v-col cols="12" md="6">
-        <NodeOperatorsUpgradedCard :operators="operators" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        v-for="(categoryOperators, category) in operators.raw"
-        :key="category"
-        cols="12"
-        md="6"
-      >
-        <NodeOperatorsTable :operators="categoryOperators" :title="category" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-skeleton-loader
+    type="table-heading, list-item-three-line, divider, table-thead, list-item-three-line, divider, list-item@4"
+    :loading="$fetchState.pending"
+  >
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12">
+          <ForkCountdownCard
+            :latest-block-number="liveStats.latestBlockNumber"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <LiveStatsTable
+            :nodes="liveStats.raw"
+            :last-updated="liveStats.now"
+            :title="$t('liveStats.title')"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <ForkClientUpgraded :nodes="nodes" />
+        </v-col>
+        <v-col cols="12" md="6">
+          <NodeOperatorsUpgradedCard :operators="operators" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          v-for="(categoryOperators, category) in operators.raw"
+          :key="category"
+          cols="12"
+          md="6"
+        >
+          <NodeOperatorsTable
+            :operators="categoryOperators"
+            :title="category"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-skeleton-loader>
 </template>
 
 <script>
