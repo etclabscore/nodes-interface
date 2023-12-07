@@ -137,7 +137,7 @@ export const actions = {
 }
 
 const parseNodes = function (nodes) {
-  const [upcomingForkBlock, upcomingForkName] = getUpcomingFork()
+  const [, upcomingForkName] = getUpcomingFork()
 
   const clients = {}
   const clientsForkAdoption = {
@@ -192,7 +192,7 @@ const parseNodes = function (nodes) {
         let upgradedForHarfork = false
         let upcomingKey = 'Not Ready'
         if (
-          node.protocols.eth.forkId.next === upcomingForkBlock ||
+          node.protocols.eth.forkId.nextTag === upcomingForkName ||
           (node.protocols.eth.forkId.tag === upcomingForkName &&
             node.protocols.eth.forkId.next === 0)
         ) {
