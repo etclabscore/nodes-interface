@@ -1,7 +1,7 @@
 <template>
-  <v-card tile>
+  <v-card tile class="mx-sm-1 mx-0">
     <v-card-title>
-      <template v-if="!isMobile">
+      <template>
         <v-icon :aria-label="title" role="img" aria-hidden="false" class="mr-2"
           >mdi-account</v-icon
         >

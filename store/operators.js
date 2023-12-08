@@ -3,7 +3,7 @@ import config from '~/params/config.json'
 
 export const state = () => ({
   raw: {}, // full list of nodes (all data) (used by nodes page)
-  upgradedOperators: {}, // data for operators upgraded stats chart
+  upgradedOperators: { total: 0, table: {}, chart: { series: [], labels: [] } }, // data for operators upgraded stats chart
   updated: false,
 })
 

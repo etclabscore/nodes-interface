@@ -10,6 +10,7 @@
       </small>
     </v-card-title>
     <v-data-table
+      :loading="loading"
       :headers="chartHeaders"
       :items="nodes"
       class="elevation-1"
@@ -23,6 +24,9 @@
       :no-results-text="$t('liveStats.noResults')"
       :disable-pagination="true"
     >
+      <template #loading>
+        <v-skeleton-loader type="table-row@3"></v-skeleton-loader>
+      </template>
       <template #expanded-item="{ headers, item }">
         <td :colspan="headers.length">
           <v-list dense>
@@ -181,6 +185,9 @@ export default {
     },
     locale() {
       return this.$i18n.locale
+    },
+    loading() {
+      return this.nodes.length === 0
     },
     chartHeaders() {
       return [

@@ -3,7 +3,7 @@ import config from '~/params/config.json'
 import { parseNodeVersion } from '~/utils'
 
 export const state = () => ({
-  raw: {},
+  raw: [],
   latestBlockNumber: 0,
   now: new Date(),
   intervalTimer: null,

@@ -6,8 +6,8 @@ import { parseNodeVersion } from '~/utils'
 export const state = () => ({
   raw: [], // full list of nodes (all data) (used by nodes page)
   clients: {}, // data for clients table (used by home page)
-  clientsForkAdoption: {}, // data for clients fork adoption chart (used by fork page)
-  forks: {}, // data for forkIds table (used by home page)
+  clientsForkAdoption: { table: {}, chart: { series: [], labels: [] } }, // data for clients fork adoption chart (used by fork page)
+  forks: { table: {}, chart: { series: [], labels: [] } }, // data for forkIds table (used by home page)
   countries: {}, // country data for heat map
   protocols: {
     eth: {},

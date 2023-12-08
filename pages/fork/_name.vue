@@ -1,49 +1,39 @@
 <template>
-  <v-skeleton-loader
-    type="table-heading, list-item-three-line, divider, table-thead, list-item-three-line, divider, list-item@4"
-    :loading="$fetchState.pending"
-  >
-    <v-container fluid :class="{ 'pa-1': isMobile }">
-      <v-row>
-        <v-col cols="12" :class="{ 'pa-1': isMobile }">
-          <ForkCountdownCard
-            :latest-block-number="liveStats.latestBlockNumber"
-          />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" :class="{ 'pa-1': isMobile }">
-          <LiveStatsTable
-            :nodes="liveStats.raw"
-            :last-updated="liveStats.now"
-            :title="$t('liveStats.title')"
-          />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
-          <ForkClientUpgraded :nodes="nodes" />
-        </v-col>
-        <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
-          <NodeOperatorsUpgradedCard :operators="operators" />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col
-          v-for="(categoryOperators, category) in operators.raw"
-          :key="category"
-          cols="12"
-          md="6"
-          :class="{ 'pa-1': isMobile }"
-        >
-          <NodeOperatorsTable
-            :operators="categoryOperators"
-            :title="category"
-          />
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-skeleton-loader>
+  <v-container fluid :class="{ 'pa-1': isMobile }">
+    <v-row>
+      <v-col cols="12" :class="{ 'pa-1': isMobile }">
+        <ForkCountdownCard :latest-block-number="liveStats.latestBlockNumber" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" :class="{ 'pa-1': isMobile }">
+        <LiveStatsTable
+          :nodes="liveStats.raw"
+          :last-updated="liveStats.now"
+          :title="$t('liveStats.title')"
+        />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
+        <ForkClientUpgraded :nodes="nodes" />
+      </v-col>
+      <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
+        <NodeOperatorsUpgradedCard :operators="operators" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        v-for="(categoryOperators, category) in operators.raw"
+        :key="category"
+        cols="12"
+        md="6"
+        :class="{ 'pa-1': isMobile }"
+      >
+        <NodeOperatorsTable :operators="categoryOperators" :title="category" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
