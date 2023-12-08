@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="pa-5 mx-1 mr-1 mb-1">
+  <v-sheet class="pa-5 mx-sm-1 mx-0 mb-1">
     <h1 class="mb-3">ETC {{ nextFork.name }} Upgrade Countdown</h1>
 
     <p>

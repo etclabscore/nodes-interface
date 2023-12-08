@@ -8,7 +8,7 @@
     :no-label-text="$t('nodes.none')"
     :colors="['#00E396', '#FD6A6A']"
     icon="mdi-directions-fork"
-    class="mr-1 mb-1"
+    class="mx-sm-1 mx-0 mb-1"
     style="margin-left: 6px"
   />
 </template>

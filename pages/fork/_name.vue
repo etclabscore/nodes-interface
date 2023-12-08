@@ -3,16 +3,16 @@
     type="table-heading, list-item-three-line, divider, table-thead, list-item-three-line, divider, list-item@4"
     :loading="$fetchState.pending"
   >
-    <v-container fluid>
+    <v-container fluid :class="{ 'pa-1': isMobile }">
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" :class="{ 'pa-1': isMobile }">
           <ForkCountdownCard
             :latest-block-number="liveStats.latestBlockNumber"
           />
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" :class="{ 'pa-1': isMobile }">
           <LiveStatsTable
             :nodes="liveStats.raw"
             :last-updated="liveStats.now"
@@ -21,10 +21,10 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
           <ForkClientUpgraded :nodes="nodes" />
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
           <NodeOperatorsUpgradedCard :operators="operators" />
         </v-col>
       </v-row>
@@ -34,6 +34,7 @@
           :key="category"
           cols="12"
           md="6"
+          :class="{ 'pa-1': isMobile }"
         >
           <NodeOperatorsTable
             :operators="categoryOperators"

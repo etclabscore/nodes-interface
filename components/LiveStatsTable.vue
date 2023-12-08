@@ -1,5 +1,5 @@
 <template>
-  <v-card tile class="mx-1">
+  <v-card tile class="mx-sm-1 mx-0">
     <v-card-title>
       <v-icon class="mr-2">mdi-server-network</v-icon>
       {{ title }}
