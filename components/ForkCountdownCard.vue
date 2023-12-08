@@ -72,7 +72,7 @@
       <p>
         You can also better monitor the fork transition at the
         <a href="https://fork-monitor.etc-network.info/" target="_blank">
-          Fork Monitor </a
+          Fork Monitor</a
         >.
       </p>
     </div>
