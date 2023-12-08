@@ -1,10 +1,8 @@
 <template>
   <v-card tile class="mx-1">
     <v-card-title>
-      <template v-if="!isMobile">
-        <v-icon class="mr-2">mdi-server-network</v-icon>
-        {{ title }}
-      </template>
+      <v-icon class="mr-2">mdi-server-network</v-icon>
+      {{ title }}
       <v-spacer />
       <small style="font-size: 10px">
         Next update

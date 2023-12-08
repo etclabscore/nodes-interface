@@ -22,6 +22,8 @@
       :headers="chartHeaders"
       :items="operators"
       class="elevation-1"
+      :mobile-breakpoint="0"
+      :hide-default-header="isMobile"
       :hide-default-footer="isMobile"
       :items-per-page="-1"
       :loading-text="$t('nodes.loading')"

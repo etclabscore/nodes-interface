@@ -1,6 +1,6 @@
 <template>
   <v-list-item style="border-bottom: 1px solid #272727">
-    <v-list-item-action>
+    <v-list-item-action v-if="tooltip">
       <v-tooltip right>
         <template #activator="{ on, attrs }">
           <v-icon v-bind="attrs" v-on="on">mdi-information-outline</v-icon>

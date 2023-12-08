@@ -5,15 +5,14 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <span>
+      <span v-if="params.hardfork.enabled">
         <NuxtLink
-          v-if="params.hardfork.enabled"
           :to="`/fork/${params.hardfork.name.toLowerCase()}`"
-          class="ml-4"
+          class="ml-4 text-body-2 text-sm-body-1"
         >
           {{ params.hardfork.name }} status page
         </NuxtLink>
-        <small>
+        <small v-if="!isMobile">
           - See readiness dashboard for the upcoming
           {{ params.hardfork.name }} hardfork
         </small>
