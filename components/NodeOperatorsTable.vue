@@ -1,12 +1,10 @@
 <template>
   <v-card tile class="mx-sm-1 mx-0">
     <v-card-title>
-      <template>
-        <v-icon :aria-label="title" role="img" aria-hidden="false" class="mr-2"
-          >mdi-account</v-icon
-        >
-        {{ title }}
-      </template>
+      <v-icon :aria-label="title" role="img" aria-hidden="false" class="mr-2"
+        >mdi-account</v-icon
+      >
+      {{ title }}
       <v-spacer />
       <v-text-field
         v-model="search"
