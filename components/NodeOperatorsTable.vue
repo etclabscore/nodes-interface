@@ -31,6 +31,26 @@
       :no-results-text="$t('nodes.noResults')"
       :disable-pagination="isMobile"
     >
+      <template #[`item.service`]="{ item }">
+        <v-list-item-title>
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <span v-bind="attrs" v-on="on">{{ item.service }}</span>
+            </template>
+
+            <div>
+              <span v-if="item.url">- Web: {{ item.url }}</span
+              ><br />
+              <span v-if="item.twitter">- X: {{ item.twitter }}</span
+              ><br />
+              <span v-if="item.telegram">- T: {{ item.telegram }}</span
+              ><br />
+              <span v-if="item.discord">- Discord: {{ item.discord }}</span>
+            </div>
+          </v-tooltip>
+        </v-list-item-title>
+      </template>
+
       <template #[`item.status`]="{ item }">
         <v-chip
           v-if="item.status === 1"
