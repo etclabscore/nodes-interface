@@ -39,12 +39,9 @@
             </template>
 
             <div>
-              <span v-if="item.url">- Web: {{ item.url }}</span
-              ><br />
-              <span v-if="item.twitter">- X: {{ item.twitter }}</span
-              ><br />
-              <span v-if="item.telegram">- T: {{ item.telegram }}</span
-              ><br />
+              <span v-if="item.url">- Web: {{ item.url }}<br /></span>
+              <span v-if="item.twitter">- X: {{ item.twitter }}<br /></span>
+              <span v-if="item.telegram">- T: {{ item.telegram }}<br /></span>
               <span v-if="item.discord">- Discord: {{ item.discord }}</span>
             </div>
           </v-tooltip>
