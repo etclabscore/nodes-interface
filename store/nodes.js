@@ -202,14 +202,21 @@ const parseNodes = function (nodes) {
         clientsForkAdoption.Total[upcomingKey] += 1
 
         if (params.hardfork.enabled) {
-          if (!clientsForkAdoption[node.client.name]) {
-            clientsForkAdoption[node.client.name] = {
+          let name = node.client.name
+
+          // handle ETCMC identity nodes separately
+          if (node.client.identity.startsWith('ETCMC')) {
+            name += '/ETCMC'
+          }
+
+          if (!clientsForkAdoption[name]) {
+            clientsForkAdoption[name] = {
               Ready: 0,
               'Not Ready': 0,
             }
           }
 
-          clientsForkAdoption[node.client.name][
+          clientsForkAdoption[name][
             upgradedForHarfork ? 'Ready' : 'Not Ready'
           ] += 1
         }
