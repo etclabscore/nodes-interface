@@ -62,7 +62,7 @@ export const actions = {
 const parseOperators = function (operators) {
   const upgradedOperators = {
     Ready: 0,
-    'Not Ready': 0,
+    Unknown: 0,
   }
 
   for (const [, category] of Object.entries(operators)) {
@@ -70,7 +70,7 @@ const parseOperators = function (operators) {
       if (operator.status === 1) {
         upgradedOperators.Ready++
       } else {
-        upgradedOperators['Not Ready']++
+        upgradedOperators.Unknown++
       }
     }
   }
