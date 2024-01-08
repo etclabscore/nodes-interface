@@ -63,8 +63,8 @@
           </a>
         </li>
         <li>
-          <a href="https://github.com/hyperledger/besu/releases">
-            besu (upcoming release)
+          <a href="https://github.com/hyperledger/besu/releases/tag/23.10.3">
+            besu v23.10.3
           </a>
         </li>
       </ul>
