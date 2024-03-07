@@ -1,6 +1,8 @@
 <template>
   <v-sheet class="pa-5 mx-sm-1 mx-0 mb-1">
-    <h1 class="mb-3">ETC {{ nextFork.name }} Upgrade Countdown</h1>
+    <h1 class="mb-3">
+      ETC {{ nextFork.name }} Upgrade {{ isForked ? 'Info' : 'Countdown' }}
+    </h1>
 
     <p>
       The <a :href="nextFork.ecip">{{ nextFork.name }} Hardfork</a>

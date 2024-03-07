@@ -63,6 +63,7 @@
   },
   "hardfork": {
     "enabled": true,
+    "forkCompletedMode": true,
     "blockNumber": 19250000,
     "name": "Spiral",
     "ecip": "https: //ecips.ethereumclassic.org/ECIPs/ecip-1109",

@@ -5,7 +5,7 @@
         <ForkCountdownCard :latest-block-number="liveStats.latestBlockNumber" />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="!params.hardfork.forkCompletedMode">
       <v-col cols="12" :class="{ 'pa-1': isMobile }">
         <LiveStatsTable
           :nodes="liveStats.raw"
@@ -14,7 +14,7 @@
         />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="!params.hardfork.forkCompletedMode">
       <v-col cols="12" md="6" :class="{ 'pa-1': isMobile }">
         <ForkClientUpgraded :nodes="nodes" />
       </v-col>
@@ -22,7 +22,7 @@
         <NodeOperatorsUpgradedCard :operators="operators" />
       </v-col>
     </v-row>
-    <v-row>
+    <v-row v-if="!params.hardfork.forkCompletedMode">
       <v-col
         v-for="(categoryOperators, category) in operators.raw"
         :key="category"
@@ -65,6 +65,9 @@ export default {
     ])
   },
   computed: {
+    params() {
+      return this.$store.state.params
+    },
     nodes() {
       return this.$store.state.nodes
     },

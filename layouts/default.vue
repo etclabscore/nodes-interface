@@ -5,7 +5,9 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
 
-      <span v-if="params.hardfork.enabled">
+      <span
+        v-if="params.hardfork.enabled && !params.hardfork.forkCompletedMode"
+      >
         <NuxtLink
           :to="`/fork/${params.hardfork.name.toLowerCase()}`"
           class="ml-4 text-body-2 text-sm-body-1"
